@@ -46,11 +46,20 @@ git clone https://github.com/cless75/personal-cognitive-os
 ### B1. Claude Code
 
 Сделай команду инициации доступной (один раз, во всех проектах):
+
+**Windows PowerShell:**
+```powershell
+git clone --depth 1 https://github.com/cless75/personal-cognitive-os "$env:TEMP\pco"
+New-Item -ItemType Directory -Force "$HOME\.claude\skills" | Out-Null
+Copy-Item -Recurse -Force "$env:TEMP\pco\.claude\skills\init-exocortex" "$HOME\.claude\skills"
+Remove-Item -Recurse -Force "$env:TEMP\pco"
+```
+
+**macOS / Linux / Git Bash:**
 ```bash
 git clone --depth 1 https://github.com/cless75/personal-cognitive-os /tmp/pco
 mkdir -p ~/.claude/skills && cp -r /tmp/pco/.claude/skills/init-exocortex ~/.claude/skills/ && rm -rf /tmp/pco
 ```
-> Windows (Git Bash): `~/.claude/skills` = `C:\Users\<ты>\.claude\skills`.
 
 Открой свой проект и запусти:
 ```

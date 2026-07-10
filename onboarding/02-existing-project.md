@@ -14,30 +14,45 @@ Claude Code берёт навыки из `~/.claude/skills/` (личные, во
 
 ### Вариант 1 — установить `init-exocortex` глобально (один раз, для всех проектов)
 
+**Windows PowerShell:**
+```powershell
+git clone --depth 1 https://github.com/cless75/personal-cognitive-os "$env:TEMP\pco"
+New-Item -ItemType Directory -Force "$HOME\.claude\skills" | Out-Null
+Copy-Item -Recurse -Force "$env:TEMP\pco\.claude\skills\init-exocortex" "$HOME\.claude\skills"
+Remove-Item -Recurse -Force "$env:TEMP\pco"
+```
+
+**macOS / Linux / Git Bash:**
 ```bash
 git clone --depth 1 https://github.com/cless75/personal-cognitive-os /tmp/pco
-mkdir -p ~/.claude/skills
-cp -r /tmp/pco/.claude/skills/init-exocortex ~/.claude/skills/
+mkdir -p ~/.claude/skills && cp -r /tmp/pco/.claude/skills/init-exocortex ~/.claude/skills/ && rm -rf /tmp/pco
 ```
-> Windows (Git Bash): `~/.claude/skills` = `C:\Users\<ты>\.claude\skills`.
 
 Теперь открой свой проект в Claude Code и запусти:
 ```
 /init-exocortex        → выбери режим B (in-place)
 ```
-Навык развернёт структуру, допишет карту в `CLAUDE.md` и скопирует остальные навыки в `.claude/skills` твоего проекта.
+Навык сам подтянет seed, развернёт структуру, допишет карту в `CLAUDE.md` и скопирует остальные навыки в `.claude/skills` твоего проекта.
 
 ### Вариант 2 — скопировать навыки прямо в проект (без глобальной установки)
 
 Из корня твоего проекта:
+
+**Windows PowerShell:**
+```powershell
+git clone --depth 1 https://github.com/cless75/personal-cognitive-os "$env:TEMP\pco"
+Copy-Item -Recurse -Force "$env:TEMP\pco\.claude" .
+Remove-Item -Recurse -Force "$env:TEMP\pco"
+```
+
+**macOS / Linux / Git Bash:**
 ```bash
 git clone --depth 1 https://github.com/cless75/personal-cognitive-os /tmp/pco
-cp -r /tmp/pco/.claude ./          # добавит .claude/skills и .claude/commands
-rm -rf /tmp/pco
+cp -r /tmp/pco/.claude ./ && rm -rf /tmp/pco
 ```
 Команды доступны сразу (Claude Code подхватывает `.claude/skills` автоматически). Затем:
 ```
-/init-exocortex        → режим B (in-place)   # достроит папки + карту проектов
+/init-exocortex        → режим B (in-place)
 ```
 
 ---

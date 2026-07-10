@@ -15,7 +15,7 @@ Claude уже установлен. Два входа:
 
 Дальше: положи свой первый файл в `sources/` → запусти `/review-concepts` → пройди авторское ревью → первая карточка концепта появится в `concepts/`.
 
-Подробно — [START-HERE.md](START-HERE.md) и [onboarding/01-first-review.md](onboarding/01-first-review.md).
+Подробно — [DEPLOY.md](DEPLOY.md) (развёртывание), [START-HERE.md](START-HERE.md) и [onboarding/01-first-review.md](onboarding/01-first-review.md).
 
 ## Структура
 

@@ -1,28 +1,55 @@
-# Добавить экзокортекс в уже существующий проект Cowork
+# Дополнить существующий проект (созданный без seed)
 
-Если у тебя уже есть проект в Claude Cowork (папка с работой) и ты хочешь встроить в него Personal Cognitive OS — не нужно заводить отдельный репозиторий. Инициируй **in-place**, недеструктивно.
+Уже есть проект (в Claude Code или Cowork), созданный без Exocortex Base? Не нужно заводить отдельный репозиторий — добавь экзокортекс **на месте** (in-place), недеструктивно.
 
-## Предпосылка — навыки установлены
+Механика — навык `/init-exocortex` → **режим B (in-place)**: добавляет недостающие папки (`concepts/`, `About-Me/`, `sources/`, `projects/`, `daily/`, `onboarding/`), **дописывает** блок карты проектов в `CLAUDE.md` и подключает навыки — **ничего не перезаписывая**.
 
-Cowork не читает `.claude/skills` из папки автоматически. Установи навыки один раз (на уровне пользователя, чтобы были во всех проектах):
+Загвоздка одна: в проекте без seed команды `/init-exocortex` ещё нет. Сначала сделай её доступной.
 
-1. Скачай seed: `git clone https://github.com/cless75/personal-cognitive-os` (в любой каталог — нужен только для сборки ZIP/плагина).
-2. Установи `/init-exocortex` как user-level навык: Settings → Capabilities → Skills → Upload → `distributions/init-exocortex.zip` (сборка — в [`distributions/README.md`](../distributions/README.md)).
-3. (Опц.) Установи остальные навыки: плагин из папки (Settings → Plugins → Install from folder → `.claude-plugin/`) или ZIP `personal-cognitive-os-skills.zip`.
+---
 
-## Инициация in-place
+## Claude Code
 
-1. Открой свой существующий проект в Cowork.
-2. Запусти `/init-exocortex` → выбери режим **B. В существующий проект (in-place)**.
-3. Навык просканирует папку, покажет что уже есть и **добавит только недостающее**:
-   - папки `concepts/`, `About-Me/`, `sources/`, `projects/`, `daily/`, `onboarding/`;
-   - в твой `CLAUDE.md` **допишет** секцию «Personal Cognitive OS» + блок карты проектов (существующее содержимое не трогается);
-   - установит/подхватит навыки.
-4. Ответь на короткие вопросы `init-me` (профиль), не затирая уже имеющийся контекст.
-5. Дальше как обычно: файл в `sources/` → `/review-concepts`.
+Claude Code берёт навыки из `~/.claude/skills/` (личные, во всех проектах) и `.claude/skills/` (в проекте). Два варианта:
+
+### Вариант 1 — установить `init-exocortex` глобально (один раз, для всех проектов)
+
+```bash
+git clone --depth 1 https://github.com/cless75/personal-cognitive-os /tmp/pco
+mkdir -p ~/.claude/skills
+cp -r /tmp/pco/.claude/skills/init-exocortex ~/.claude/skills/
+```
+> Windows (Git Bash): `~/.claude/skills` = `C:\Users\<ты>\.claude\skills`.
+
+Теперь открой свой проект в Claude Code и запусти:
+```
+/init-exocortex        → выбери режим B (in-place)
+```
+Навык развернёт структуру, допишет карту в `CLAUDE.md` и скопирует остальные навыки в `.claude/skills` твоего проекта.
+
+### Вариант 2 — скопировать навыки прямо в проект (без глобальной установки)
+
+Из корня твоего проекта:
+```bash
+git clone --depth 1 https://github.com/cless75/personal-cognitive-os /tmp/pco
+cp -r /tmp/pco/.claude ./          # добавит .claude/skills и .claude/commands
+rm -rf /tmp/pco
+```
+Команды доступны сразу (Claude Code подхватывает `.claude/skills` автоматически). Затем:
+```
+/init-exocortex        → режим B (in-place)   # достроит папки + карту проектов
+```
+
+---
+
+## Cowork
+
+Cowork не читает `.claude/skills` из папки. Поставь навыки один раз (плагин/ZIP — см. [`distributions/README.md`](../distributions/README.md)), затем открой свой проект и запусти `/init-exocortex` → режим B.
+
+---
 
 ## Гарантия недеструктивности
 
 - Существующие файлы **не удаляются и не перезаписываются**.
 - В `CLAUDE.md` правится только дописанный блок между маркерами `projects-map`.
-- Одноимённые папки/навыки проекта сохраняются как есть.
+- Одноимённые папки/навыки твоего проекта сохраняются как есть.

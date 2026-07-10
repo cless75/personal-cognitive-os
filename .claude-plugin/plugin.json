@@ -10,7 +10,8 @@
     ".claude/skills/new-project",
     ".claude/skills/start-session",
     ".claude/skills/close-session",
-    ".claude/skills/list-concepts"
+    ".claude/skills/list-concepts",
+    ".claude/skills/update-exocortex"
   ],
   "commands": ".claude/commands"
 }

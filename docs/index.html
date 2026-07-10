@@ -345,20 +345,36 @@
 
     <section class="scenario">
       <h2 id="a"><span class="badge">A</span> Начать с нуля</h2>
-      <p>Получишь отдельный новый репозиторий-экзокортекс.</p>
+      <p>Получишь отдельный новый репозиторий-экзокортекс. Дальше — по шагам, ничего не пропускай.</p>
 
-      <h3>Шаг 1. Скачай</h3>
-      <pre><code>git clone https://github.com/cless75/personal-cognitive-os</code></pre>
-
-      <h3>Шаг 2. Открой папку и подключи навыки</h3>
+      <h3>Шаг 1. Открой терминал и скачай папку</h3>
+      <p>Терминал — это окно для команд.</p>
       <ul>
-        <li><strong>Claude Code</strong> — просто открой папку. Команды доступны сразу (лежат в <code>.claude/skills</code>).</li>
-        <li><strong>Claude Cowork</strong> — открой папку → <strong>Settings → Plugins → Install plugin from folder</strong> → выбери <code>.claude-plugin/</code>.</li>
+        <li><strong>Windows:</strong> нажми <code>Пуск</code> → набери <strong>PowerShell</strong> → открой.</li>
+        <li><strong>macOS:</strong> открой приложение <strong>Терминал</strong> (Spotlight → «Терминал»).</li>
+      </ul>
+      <p>В терминале перейди туда, куда хочешь скачать (например в Документы), и скачай:</p>
+      <pre><code>cd ~/Documents
+git clone https://github.com/cless75/personal-cognitive-os</code></pre>
+      <blockquote><p>Windows PowerShell: вместо <code>cd ~/Documents</code> набери <code>cd $HOME\Documents</code>.</p></blockquote>
+      <p>Появится папка <code>personal-cognitive-os</code>.</p>
+
+      <h3>Шаг 2. Открой эту папку в Claude</h3>
+      <ul>
+        <li><strong>Claude Code</strong> — в <strong>том же терминале</strong> зайди в папку и запусти Claude:
+          <pre><code>cd personal-cognitive-os
+claude</code></pre>
+          Откроется чат Claude Code прямо в этой папке. Навыки доступны сразу.
+        </li>
+        <li><strong>Claude Cowork</strong> — в приложении Claude открой вкладку <strong>Cowork</strong> → открой папку <code>personal-cognitive-os</code> → <strong>Settings → Plugins → Install plugin from folder</strong> → выбери <code>.claude-plugin/</code>.</li>
       </ul>
       <div class="callout">
         <span class="tag">Почему</span>
         <p style="margin:0">Cowork, в отличие от Claude Code, <strong>не</strong> подхватывает навыки из папки сам — их ставят плагином один раз.</p>
       </div>
+
+      <h3>Шаг 3. Где вводить команды</h3>
+      <p>Команды вида <code>/имя</code> (например <code>/init-me</code>) пишешь <strong>в поле чата Claude</strong> (Code или Cowork) — <strong>не в терминал</strong>. Начни печатать <code>/</code> — появится список команд.</p>
 
       <p class="next">→ Дальше <a href="#cycle">Первый цикл</a>.</p>
     </section>
@@ -368,7 +384,7 @@
       <p>Уже есть проект, второй заводить не хочешь. Встроим экзокортекс прямо в него — <strong>недеструктивно</strong>: твои файлы не трогаются, добавляется только недостающее.</p>
       <div class="why"><strong>Почему нужен доп. шаг:</strong> в проекте без экзокортекса команды <code>/init-exocortex</code> ещё нет — сначала «приносим» её.</div>
 
-      <h3>Шаг 1. Принеси команду инициации <span style="font-weight:400;color:var(--ink-soft);font-size:15px">(один раз — станет доступна во всех проектах)</span></h3>
+      <h3>Шаг 1. Принеси команду инициации <span style="font-weight:400;color:var(--ink-soft);font-size:15px">— в терминале, один раз (станет доступна во всех проектах)</span></h3>
       <p><em>Windows PowerShell:</em></p>
       <pre><code>git clone --depth 1 https://github.com/cless75/personal-cognitive-os "$env:TEMP\pco"
 New-Item -ItemType Directory -Force "$HOME\.claude\skills" | Out-Null
@@ -378,7 +394,7 @@ Remove-Item -Recurse -Force "$env:TEMP\pco"</code></pre>
       <pre><code>git clone --depth 1 https://github.com/cless75/personal-cognitive-os /tmp/pco
 mkdir -p ~/.claude/skills &amp;&amp; cp -r /tmp/pco/.claude/skills/init-exocortex ~/.claude/skills/ &amp;&amp; rm -rf /tmp/pco</code></pre>
 
-      <h3>Шаг 2. Встрой — открой свой проект и запусти</h3>
+      <h3>Шаг 2. Встрой — открой свой проект в Claude и <span style="color:var(--gold-dark)">в чате Claude</span> запусти</h3>
       <pre><code>/init-exocortex     → выбери «режим B (в этот проект)»</code></pre>
       <p>Команда сама скачает seed, добавит навыки и шаблоны, создаст недостающие папки и допишет карту проектов в <code>CLAUDE.md</code>. Существующие файлы не меняются.</p>
       <div class="why"><strong>Cowork:</strong> то же самое, только навыки ставятся плагином/ZIP — см. <code>distributions/README.md</code>.</div>
@@ -393,6 +409,7 @@ mkdir -p ~/.claude/skills &amp;&amp; cp -r /tmp/pco/.claude/skills/init-exocorte
 
     <section>
       <h2 id="cycle">Первый цикл</h2>
+      <blockquote><p>Все команды ниже (<code>/init-me</code>, <code>/review-concepts</code>…) пишешь <strong>в чат Claude</strong> — в поле ввода Claude Code или Cowork, не в терминал.</p></blockquote>
 
       <h3>1. Расскажи о себе</h3>
       <pre><code>/init-me</code></pre>

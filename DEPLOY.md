@@ -1,53 +1,62 @@
 # Установка Exocortex Base
 
-Гид для нового пользователя. Найди свою ситуацию ниже — каждый сценарий самодостаточен.
+**Exocortex Base** — твоя личная база концептов в обычных Markdown-файлах. Ты приносишь материал (документ или запись встречи), Claude помогает разобрать его на идеи и провести авторское ревью — а ты получаешь **свой проверенный репозиторий концептов**, не привязанный ни к одной платформе.
+
+> После установки у тебя будет папка с командами Claude (`/review-concepts`, `/new-project` и др.) и растущей папкой `concepts/`.
 
 **Репозиторий:** https://github.com/cless75/personal-cognitive-os
+
+## Термины за 20 секунд
+
+- **seed** — этот стартовый репозиторий (скачиваешь и растишь свой).
+- **концепт** — одна продуманная идея = одна карточка в `concepts/`.
+- **навык / команда** — действие Claude, вызывается через `/имя` (например `/review-concepts`).
+- **поверхность** — где работаешь: Claude Code, Claude Cowork или Obsidian (для просмотра).
 
 ## Что нужно
 
 - Установлен Claude — **Claude Code** (терминал/IDE) или **Claude Desktop с Cowork**.
-- `git`.
-- (опционально) Obsidian — только для просмотра.
+- **git** (на Windows команды даю для PowerShell).
+- (опционально) Obsidian — только чтобы смотреть файлы.
 
-## Какой ты пользователь?
+## Шаг 0. Выбери свою ситуацию
 
-| Твоя ситуация | Сценарий |
+| Твоя ситуация | Куда идти |
 |---|---|
-| Хочу личный экзокортекс с нуля | **A** |
-| У меня уже есть проект (без seed), хочу добавить в него | **B** |
-| Просто посмотреть | **Obsidian** |
+| Хочу личный экзокортекс с нуля | **Сценарий A** |
+| Уже есть проект, хочу встроить в него | **Сценарий B** |
+| Просто посмотреть файлы | **Obsidian** |
 
 ---
 
-## Сценарий A — Начать с нуля (свой новый репозиторий)
+## Сценарий A — начать с нуля
 
-### A1. Claude Code (проще всего)
+Получишь отдельный новый репозиторий-экзокортекс.
 
+**Шаг 1. Скачай:**
 ```bash
 git clone https://github.com/cless75/personal-cognitive-os
 ```
-Открой папку в Claude Code — команды доступны сразу (навыки лежат в `.claude/skills`). Переходи к **[Первому циклу](#первый-рабочий-цикл)**.
 
-### A2. Claude Cowork
+**Шаг 2. Открой папку и подключи навыки:**
 
-```bash
-git clone https://github.com/cless75/personal-cognitive-os
-```
-Открой папку в Cowork → **Settings → Plugins → Install plugin from folder** → выбери `.claude-plugin/`.
-(Cowork не читает `.claude/skills` из папки сам — поэтому ставим плагин.) Готово → **[Первый цикл](#первый-рабочий-цикл)**.
+- **Claude Code** — просто открой папку. Команды доступны сразу (лежат в `.claude/skills`).
+- **Claude Cowork** — открой папку → **Settings → Plugins → Install plugin from folder** → выбери `.claude-plugin/`.
+  *Почему: Cowork, в отличие от Claude Code, не подхватывает навыки из папки сам — их ставят плагином один раз.*
+
+→ Дальше **[Первый цикл](#первый-цикл)**.
 
 ---
 
-## Сценарий B — Добавить в существующий проект (созданный без seed)
+## Сценарий B — встроить в существующий проект
 
-Заводить второй репозиторий не нужно — внедряем на месте, **недеструктивно** (твои файлы не трогаются).
+Уже есть проект, второй заводить не хочешь. Встроим экзокортекс прямо в него — **недеструктивно**: твои файлы не трогаются, добавляется только недостающее.
 
-### B1. Claude Code
+*Почему нужен доп. шаг: в проекте без экзокортекса команды `/init-exocortex` ещё нет — сначала «приносим» её.*
 
-Сделай команду инициации доступной (один раз, во всех проектах):
+**Шаг 1. Принеси команду инициации** (один раз — станет доступна во всех проектах):
 
-**Windows PowerShell:**
+*Windows PowerShell:*
 ```powershell
 git clone --depth 1 https://github.com/cless75/personal-cognitive-os "$env:TEMP\pco"
 New-Item -ItemType Directory -Force "$HOME\.claude\skills" | Out-Null
@@ -55,59 +64,70 @@ Copy-Item -Recurse -Force "$env:TEMP\pco\.claude\skills\init-exocortex" "$HOME\.
 Remove-Item -Recurse -Force "$env:TEMP\pco"
 ```
 
-**macOS / Linux / Git Bash:**
+*macOS / Linux / Git Bash:*
 ```bash
 git clone --depth 1 https://github.com/cless75/personal-cognitive-os /tmp/pco
 mkdir -p ~/.claude/skills && cp -r /tmp/pco/.claude/skills/init-exocortex ~/.claude/skills/ && rm -rf /tmp/pco
 ```
 
-Открой свой проект и запусти:
+**Шаг 2. Встрой** — открой свой проект и запусти:
 ```
-/init-exocortex     → выбери режим B (внедрить в этот проект)
+/init-exocortex     → выбери «режим B (в этот проект)»
 ```
-Команда сама подтянет seed и встроит навыки/шаблоны, создаст недостающие папки, допишет карту проектов в `CLAUDE.md` — не трогая существующие файлы.
+Команда сама скачает seed, добавит навыки и шаблоны, создаст недостающие папки и допишет карту проектов в `CLAUDE.md`. Существующие файлы не меняются.
 
-### B2. Cowork
+*Cowork: то же самое, только навыки ставятся плагином/ZIP — см. [distributions/README.md](distributions/README.md).*
 
-Поставь навыки (плагин/ZIP — см. [`distributions/README.md`](distributions/README.md)), открой проект → `/init-exocortex` → режим B.
-
-Подробно — [onboarding/02-existing-project.md](onboarding/02-existing-project.md).
+→ Дальше **[Первый цикл](#первый-цикл)**.
 
 ---
 
 ## Просмотр в Obsidian
 
-Open folder as vault. Плагины не нужны — чистый Markdown. Смотри `concepts/` как граф, ходи по ссылкам. Правки и навыки — через Claude Code / Cowork.
+Open folder as vault. Плагины не нужны — чистый Markdown. Смотри `concepts/` как граф, ходи по ссылкам. Правки и команды — через Claude Code / Cowork.
 
 ---
 
-## Первый рабочий цикл
+## Первый цикл
 
-Одинаково во всех сценариях:
+**1. Расскажи о себе:**
 ```
-/init-me                # заполни профиль About-Me
+/init-me
 ```
-Положи документ или транскрипт в `sources/`, затем:
+Заполнит `About-Me/about-me.md` — контекст, который Claude учитывает в работе.
+
+**2. Создай первый концепт:** положи документ или запись встречи в `sources/`, затем:
 ```
-/review-concepts        # авторское ревью → карточка концепта в concepts/
+/review-concepts
 ```
-Веди проекты (карта проектов сама пополняется в `CLAUDE.md`):
+Claude извлечёт идеи, покажет черновик **твоими словами**, задаст 3–7 вопросов и проведёт через авторское ревью. → В `concepts/` появится карточка концепта.
+
+**3. Веди проекты** (карта проектов сама пополняется в `CLAUDE.md`):
 ```
 /new-project  →  /start-session  →  /close-session
 ```
 
-## Обновиться
+### Проверь, что заработало
 
-`/update-exocortex` — свежие навыки/шаблоны/доки; твои концепты, профиль и проекты нетронуты. Если твой проект — форк seed: просто `git pull`.
-
-## Если что-то не так
-
-- **Cowork не видит команды** → это норма (Cowork не читает `.claude/skills` из папки). Поставь плагин или ZIP — см. [`distributions/README.md`](distributions/README.md).
-- **CRLF-warnings** при git на Windows — безобидны.
-- **`About-Me/`** — приватный профиль; можно не коммитить в публичный форк (см. `.gitignore`).
+- Набери `/` — в списке видны команды (`review-concepts`, `new-project`…).
+- После `/review-concepts` в `concepts/` появился новый `.md`-файл.
+- В `CLAUDE.md` есть раздел «Карта проектов».
 
 ---
 
-**Команды:** `/init-me` · `/review-concepts` · `/new-project` · `/start-session` · `/close-session` · `/list-concepts` · `/init-exocortex` · `/update-exocortex`
+## Обновиться
 
-Подробнее — [START-HERE.md](START-HERE.md) и [onboarding/](onboarding/).
+`/update-exocortex` — подтянет свежие навыки и шаблоны, твои концепты и проекты не тронет. Если проект — форк seed: просто `git pull`.
+
+## Если что-то не так
+
+- **Cowork не видит команды** — это нормально: поставь плагин/ZIP (см. [distributions/README.md](distributions/README.md)).
+- **PowerShell ругается на `&&`** — у тебя старый Windows PowerShell; бери PowerShell-блоки выше (в них `&&` нет).
+- **CRLF-warnings** при git на Windows — безобидны.
+- **`About-Me/`** — приватный профиль; можешь не коммитить в публичный форк.
+
+---
+
+**Все команды:** `/init-me` · `/review-concepts` · `/new-project` · `/start-session` · `/close-session` · `/list-concepts` · `/init-exocortex` · `/update-exocortex`
+
+Подробнее — [START-HERE.md](START-HERE.md), [onboarding/](onboarding/).

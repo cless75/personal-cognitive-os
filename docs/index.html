@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Установка Exocortex Base</title>
+<style>
+  :root {
+    --navy: #1a2b4a;
+    --navy-soft: #24375c;
+    --gold: #c9a961;
+    --gold-dark: #a8863f;
+    --teal: #2e8b8b;
+    --teal-dark: #206b6b;
+    --cream: #faf8f3;
+    --cream-panel: #f2ede2;
+    --ink: #22262c;
+    --ink-soft: #4a5058;
+    --border: #e2dac8;
+    --code-bg: #f4f1ea;
+    --code-border: #e0d9c8;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.7;
+  }
+  .wrap {
+    display: flex;
+    gap: 40px;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 28px;
+    align-items: flex-start;
+  }
+  /* ===== Sticky TOC ===== */
+  nav.toc {
+    position: sticky;
+    top: 24px;
+    flex: 0 0 250px;
+    max-height: calc(100vh - 48px);
+    overflow-y: auto;
+    padding: 22px 20px;
+    background: var(--navy);
+    color: #e9e4d6;
+    border-radius: 12px;
+    box-shadow: 0 8px 26px rgba(26,43,74,0.18);
+    margin-top: 34px;
+  }
+  nav.toc h2 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    margin: 0 0 14px;
+    border: none;
+    padding: 0;
+  }
+  nav.toc ol { list-style: none; margin: 0; padding: 0; }
+  nav.toc li { margin: 0 0 3px; }
+  nav.toc a {
+    display: block;
+    padding: 6px 10px;
+    color: #d6cfbe;
+    text-decoration: none;
+    font-size: 14.5px;
+    border-radius: 7px;
+    border-left: 3px solid transparent;
+    transition: background .15s, color .15s, border-color .15s;
+  }
+  nav.toc a:hover {
+    background: var(--navy-soft);
+    color: #fff;
+    border-left-color: var(--gold);
+  }
+  /* ===== Main ===== */
+  main { flex: 1 1 auto; min-width: 0; padding: 34px 0 90px; }
+  header.hero {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-soft) 100%);
+    color: #fff;
+    padding: 38px 38px 34px;
+    border-radius: 14px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(26,43,74,0.2);
+    border-top: 5px solid var(--gold);
+  }
+  header.hero .kicker {
+    font-size: 12.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+  header.hero h1 { margin: 0 0 14px; font-size: 34px; line-height: 1.2; color: #fff; border: none; padding: 0; }
+  header.hero p { margin: 6px 0 0; color: #d8d2c4; font-size: 16px; }
+  header.hero a { color: var(--gold); }
+  h2 {
+    font-size: 24px;
+    color: var(--navy);
+    margin: 46px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--border);
+    scroll-margin-top: 20px;
+  }
+  h3 { font-size: 19px; color: var(--teal-dark); margin: 26px 0 10px; scroll-margin-top: 20px; }
+  p { margin: 12px 0; }
+  a { color: var(--teal-dark); text-decoration: none; border-bottom: 1px solid rgba(46,139,139,0.35); }
+  a:hover { border-bottom-color: var(--teal-dark); }
+  strong { color: var(--navy); }
+  ul, ol { padding-left: 24px; }
+  li { margin: 6px 0; }
+  blockquote {
+    margin: 18px 0;
+    padding: 14px 20px;
+    background: var(--cream-panel);
+    border-left: 4px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    color: var(--ink-soft);
+  }
+  blockquote p { margin: 4px 0; }
+  /* Scenario card */
+  .scenario {
+    margin: 24px 0;
+    padding: 4px 24px 20px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 3px 14px rgba(26,43,74,0.06);
+  }
+  .scenario > h2 {
+    margin: -4px -24px 14px;
+    padding: 16px 24px;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-soft) 100%);
+    color: #fff;
+    border: none;
+    border-radius: 12px 12px 0 0;
+    font-size: 21px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 34px;
+    height: 34px;
+    padding: 0 6px;
+    background: var(--gold);
+    color: var(--navy);
+    border-radius: 8px;
+    font-weight: 800;
+    font-size: 17px;
+    flex: 0 0 auto;
+  }
+  .sub-badge {
+    display: inline-block;
+    background: var(--gold-dark);
+    color: #fff;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 2px 9px;
+    border-radius: 6px;
+    margin-right: 8px;
+    letter-spacing: 0.02em;
+  }
+  /* Callout */
+  .callout {
+    margin: 18px 0;
+    padding: 16px 20px;
+    background: #fbf6e8;
+    border: 1px solid var(--gold);
+    border-left: 5px solid var(--gold-dark);
+    border-radius: 10px;
+  }
+  .callout .tag {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--gold-dark);
+    padding: 2px 10px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+  }
+  /* Navigator table */
+  .tbl-scroll { overflow-x: auto; margin: 18px 0; }
+  table { border-collapse: collapse; width: 100%; min-width: 420px; font-size: 16px; }
+  th, td { text-align: left; padding: 12px 16px; border: 1px solid var(--border); }
+  th { background: var(--navy); color: #fff; font-weight: 600; }
+  tr:nth-child(even) td { background: var(--cream-panel); }
+  table.nav-tbl td:last-child { text-align: center; }
+  .pill {
+    display: inline-block;
+    min-width: 40px;
+    padding: 3px 12px;
+    background: var(--gold);
+    color: var(--navy);
+    border-radius: 20px;
+    font-weight: 800;
+    font-size: 15px;
+  }
+  /* Code */
+  code {
+    font-family: "SF Mono", "Cascadia Code", Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 14px;
+    background: var(--code-bg);
+    border: 1px solid var(--code-border);
+    border-radius: 5px;
+    padding: 1px 6px;
+    color: var(--navy);
+  }
+  pre {
+    background: var(--code-bg);
+    border: 1px solid var(--code-border);
+    border-left: 4px solid var(--teal);
+    border-radius: 8px;
+    padding: 16px 18px;
+    overflow-x: auto;
+    margin: 14px 0;
+  }
+  pre code { background: none; border: none; padding: 0; font-size: 14px; color: #2a3340; white-space: pre; }
+  .cmd-row code {
+    display: inline-block;
+    margin: 4px 6px 4px 0;
+    padding: 4px 10px;
+    background: #fff;
+    border: 1px solid var(--gold);
+    color: var(--navy);
+    font-size: 14px;
+  }
+  hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+  footer {
+    margin-top: 54px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+    color: var(--ink-soft);
+    font-size: 14px;
+  }
+  @media (max-width: 820px) {
+    nav.toc { display: none; }
+    .wrap { padding: 0 18px; }
+    header.hero { padding: 26px 22px; }
+    header.hero h1 { font-size: 26px; }
+    body { font-size: 16px; }
+    .scenario { padding: 4px 16px 16px; }
+    .scenario > h2 { margin: -4px -16px 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="toc">
+    <h2>Содержание</h2>
+    <ol>
+      <li><a href="#need">Что нужно</a></li>
+      <li><a href="#who">Какой ты пользователь?</a></li>
+      <li><a href="#a">Сценарий A — с нуля</a></li>
+      <li><a href="#b">Сценарий B — в свой проект</a></li>
+      <li><a href="#obsidian">Просмотр в Obsidian</a></li>
+      <li><a href="#cycle">Первый рабочий цикл</a></li>
+      <li><a href="#update">Обновиться</a></li>
+      <li><a href="#trouble">Если что-то не так</a></li>
+      <li><a href="#cmds">Команды</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <header class="hero">
+      <div class="kicker">Personal Cognitive OS · Гид для нового пользователя</div>
+      <h1>Установка Exocortex Base</h1>
+      <p>Как поставить и запустить свой экзокортекс за несколько минут.</p>
+      <p>Репозиторий: <a href="https://github.com/cless75/personal-cognitive-os">github.com/cless75/personal-cognitive-os</a></p>
+    </header>
+
+    <section>
+      <h2 id="need">Что нужно</h2>
+      <ul>
+        <li><strong>Claude Code</strong> ИЛИ <strong>Claude Desktop с Cowork</strong> — рабочая среда, где живут навыки.</li>
+        <li><strong>git</strong> — чтобы скачать репозиторий.</li>
+        <li>Опционально <strong>Obsidian</strong> — если хочешь просматривать концепты как связанный граф (только просмотр).</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 id="who">Какой ты пользователь?</h2>
+      <p>Найди свою ситуацию — и переходи к нужному сценарию.</p>
+      <div class="tbl-scroll">
+        <table class="nav-tbl">
+          <thead>
+            <tr><th>Ситуация</th><th>Сценарий</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Хочу личный экзокортекс с нуля</td><td><a href="#a" style="border:none"><span class="pill">A</span></a></td></tr>
+            <tr><td>Уже есть проект без seed, хочу добавить экзокортекс</td><td><a href="#b" style="border:none"><span class="pill">B</span></a></td></tr>
+            <tr><td>Просто посмотреть</td><td><a href="#obsidian" style="border:none"><span class="pill" style="background:var(--teal);color:#fff">Obs</span></a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="scenario">
+      <h2 id="a"><span class="badge">A</span> Начать с нуля</h2>
+      <p>Ты заводишь свежий экзокортекс. Всё, что нужно, — скачать репо и подключить навыки.</p>
+
+      <h3><span class="sub-badge">A1</span>Claude Code</h3>
+      <pre><code>git clone https://github.com/cless75/personal-cognitive-os
+cd personal-cognitive-os</code></pre>
+      <p>Открой папку в Claude Code — команды доступны <strong>сразу</strong> (Claude Code сам читает <code>.claude/skills</code>). Переходи к разделу <a href="#cycle">«Первый рабочий цикл»</a>.</p>
+
+      <h3><span class="sub-badge">A2</span>Cowork</h3>
+      <pre><code>git clone https://github.com/cless75/personal-cognitive-os
+cd personal-cognitive-os</code></pre>
+      <p>Открой папку в Cowork → <strong>Settings → Plugins → Install plugin from folder</strong> → выбери <code>.claude-plugin/</code>.</p>
+      <div class="callout">
+        <span class="tag">Важно</span>
+        <p style="margin:0">Cowork <strong>не</strong> читает <code>.claude/skills</code> из папки сам (в отличие от Claude Code) — поэтому навыки подключаются плагином. Это делается один раз. Дальше переходи к разделу <a href="#cycle">«Первый рабочий цикл»</a>.</p>
+      </div>
+    </section>
+
+    <section class="scenario">
+      <h2 id="b"><span class="badge">B</span> Добавить в существующий проект (без seed), недеструктивно</h2>
+      <p>У тебя уже есть проект, и ты хочешь встроить в него экзокортекс, <strong>ничего не сломав</strong>. Команда <code>/init-exocortex</code> (режим B) сама подтянет seed, встроит навыки и шаблоны, создаст недостающие папки и допишет карту проектов в <code>CLAUDE.md</code> — не трогая твои существующие файлы.</p>
+
+      <h3><span class="sub-badge">B1</span>Claude Code</h3>
+      <p>Сначала один раз поставь <code>init-exocortex</code> глобально (эта команда нужна <strong>до</strong> того, как в проекте появится seed):</p>
+      <p><strong>Windows PowerShell:</strong></p>
+      <pre><code>git clone --depth 1 https://github.com/cless75/personal-cognitive-os "$env:TEMP\pco"
+New-Item -ItemType Directory -Force "$HOME\.claude\skills" | Out-Null
+Copy-Item -Recurse -Force "$env:TEMP\pco\.claude\skills\init-exocortex" "$HOME\.claude\skills"
+Remove-Item -Recurse -Force "$env:TEMP\pco"</code></pre>
+      <p><strong>macOS / Linux / Git Bash:</strong></p>
+      <pre><code>git clone --depth 1 https://github.com/cless75/personal-cognitive-os /tmp/pco
+mkdir -p ~/.claude/skills &amp;&amp; cp -r /tmp/pco/.claude/skills/init-exocortex ~/.claude/skills/ &amp;&amp; rm -rf /tmp/pco</code></pre>
+      <blockquote><p>На Windows <code>~/.claude/skills</code> = <code>C:\Users\&lt;ты&gt;\.claude\skills</code>.</p></blockquote>
+      <p>Затем в своём проекте запусти:</p>
+      <pre><code>/init-exocortex        # выбери режим B</code></pre>
+      <p>Команда недеструктивна: добавляет только недостающее и дописывает карту проектов в <code>CLAUDE.md</code>, не перезаписывая существующие файлы.</p>
+
+      <h3><span class="sub-badge">B2</span>Cowork</h3>
+      <p>Поставь навыки (плагином из <code>.claude-plugin/</code> или ZIP через Settings → Capabilities → Skills → Upload), затем запусти:</p>
+      <pre><code>/init-exocortex        # выбери режим B</code></pre>
+    </section>
+
+    <section>
+      <h2 id="obsidian">Просмотр в Obsidian</h2>
+      <p>Хочешь просто посмотреть содержимое, без Claude?</p>
+      <ul>
+        <li>В Obsidian: <strong>Open folder as vault</strong> → укажи папку репозитория.</li>
+        <li>Это чистый Markdown — <strong>плагины не нужны</strong>.</li>
+        <li>Папка <code>concepts/</code> красиво раскрывается как граф связей между концептами.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 id="cycle">Первый рабочий цикл (общий)</h2>
+      <p>Этот цикл одинаков для всех сценариев. Навык <code>/review-concepts</code> — редактор, а не сочинитель: он сохраняет твой авторский голос.</p>
+      <pre><code>/init-me                # заполни профиль владельца About-Me/about-me.md
+# положи документ или транскрипт в sources/
+/review-concepts        # авторское ревью → карточка концепта в concepts/</code></pre>
+      <p>Что делает <code>/review-concepts</code>:</p>
+      <ul>
+        <li>извлекает концепты из твоего материала;</li>
+        <li>показывает <strong>draft с твоей цитатой</strong> (первоисточник формулировки);</li>
+        <li>задаёт <strong>3–7 вопросов по слоям</strong>: ядро / границы / связи / имя;</li>
+        <li>прогоняет <strong>4 guard'а качества</strong>: category-error, forced-symmetry, substrate, false-second-axis;</li>
+        <li>и только по <strong>твоему явному вердикту</strong> оформляет карточку в <code>concepts/</code>.</li>
+      </ul>
+      <p>Дальше — проекты:</p>
+      <pre><code>/new-project → /start-session → /close-session</code></pre>
+      <p>Карта проектов при этом <strong>сама пополняется</strong> в <code>CLAUDE.md</code> (блок между маркерами <code>projects-map</code>), который Claude видит в каждой новой сессии.</p>
+    </section>
+
+    <section>
+      <h2 id="update">Обновиться</h2>
+      <pre><code>/update-exocortex        # или git pull, если у тебя форк</code></pre>
+      <p>Твои концепты, профиль и проекты остаются <strong>нетронутыми</strong> — обновляется только каркас.</p>
+    </section>
+
+    <section>
+      <h2 id="trouble">Если что-то не так</h2>
+      <ul>
+        <li><strong>Cowork не видит команды</strong> — это норма, а не баг. Cowork не читает <code>.claude/skills</code> из папки автоматически. Поставь навыки плагином (<code>.claude-plugin/</code>) или через ZIP Upload.</li>
+        <li><strong>CRLF-warnings при clone/commit на Windows</strong> — безобидны. git просто предупреждает о переводе окончаний строк LF↔CRLF; на содержимое это не влияет.</li>
+        <li><strong><code>About-Me/</code> приватный</strong> — это твой личный профиль. В форк его можно <strong>не коммитить</strong> (добавь <code>About-Me/</code> в <code>.gitignore</code>), чтобы личный контекст не уходил в публичный репозиторий.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 id="cmds">Команды</h2>
+      <p class="cmd-row">
+        <code>/init-me</code> <code>/review-concepts</code> <code>/new-project</code> <code>/start-session</code> <code>/close-session</code> <code>/list-concepts</code> <code>/init-exocortex</code> <code>/update-exocortex</code>
+      </p>
+    </section>
+
+    <footer>
+      Personal Cognitive OS · Exocortex Base · seeded_from: exocortex-bok@707 · Лицензия каркаса MIT
+    </footer>
+  </main>
+</div>
+</body>
+</html>

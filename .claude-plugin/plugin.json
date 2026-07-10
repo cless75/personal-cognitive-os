@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Навыки персонального репозитория концептов: авторский ревью концептов, ведение проектов и сессий, инициализация. Для Claude Cowork/Code.",
   "author": "seeded from exocortex-bok@707",
-  "homepage": "https://github.com/<user>/personal-cognitive-os",
+  "homepage": "https://github.com/cless75/personal-cognitive-os",
   "skills": [
     ".claude/skills/review-concepts",
     ".claude/skills/init-me",

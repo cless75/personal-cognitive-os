@@ -15,6 +15,7 @@
 - [About-Me/about-me.md](About-Me/about-me.md) — твой профиль (знания о тебе).
 - [concepts/README.md](concepts/README.md) — что такое карточка концепта, статусы draft → canon.
 - [onboarding/01-first-review.md](onboarding/01-first-review.md) — первый ревью, шаг за шагом.
+- [onboarding/02-existing-project.md](onboarding/02-existing-project.md) — добавить экзокортекс в уже существующий проект Cowork (in-place).
 - [onboarding/surfaces.md](onboarding/surfaces.md) — работать в Obsidian или в Cowork.
 - [CLAUDE.md](CLAUDE.md) — правила репо + живая карта проектов.
 

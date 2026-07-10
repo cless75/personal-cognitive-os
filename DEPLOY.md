@@ -31,18 +31,39 @@
 
 ## Сценарий A — начать с нуля
 
-Получишь отдельный новый репозиторий-экзокортекс.
+Получишь отдельный новый репозиторий-экзокортекс. Дальше — по шагам, ничего не пропускай.
 
-**Шаг 1. Скачай:**
+### Шаг 1. Открой терминал и скачай папку
+
+Терминал — это окно для команд.
+- **Windows:** нажми `Пуск` → набери **PowerShell** → открой.
+- **macOS:** открой приложение **Терминал** (Spotlight → «Терминал»).
+
+В терминале перейди туда, куда хочешь скачать (например в Документы), и скачай:
+
 ```bash
+cd ~/Documents
 git clone https://github.com/cless75/personal-cognitive-os
 ```
+> Windows PowerShell: вместо `cd ~/Documents` набери `cd $HOME\Documents`.
 
-**Шаг 2. Открой папку и подключи навыки:**
+Появится папка `personal-cognitive-os`.
 
-- **Claude Code** — просто открой папку. Команды доступны сразу (лежат в `.claude/skills`).
-- **Claude Cowork** — открой папку → **Settings → Plugins → Install plugin from folder** → выбери `.claude-plugin/`.
+### Шаг 2. Открой эту папку в Claude
+
+- **Claude Code** — в **том же терминале** зайди в папку и запусти Claude:
+  ```bash
+  cd personal-cognitive-os
+  claude
+  ```
+  Откроется чат Claude Code прямо в этой папке. Навыки доступны сразу.
+
+- **Claude Cowork** — в приложении Claude открой вкладку **Cowork** → открой папку `personal-cognitive-os` → **Settings → Plugins → Install plugin from folder** → выбери `.claude-plugin/`.
   *Почему: Cowork, в отличие от Claude Code, не подхватывает навыки из папки сам — их ставят плагином один раз.*
+
+### Шаг 3. Где вводить команды
+
+Команды вида `/имя` (например `/init-me`) пишешь **в поле чата Claude** (Code или Cowork) — **не в терминал**. Начни печатать `/` — появится список команд.
 
 → Дальше **[Первый цикл](#первый-цикл)**.
 
@@ -54,7 +75,7 @@ git clone https://github.com/cless75/personal-cognitive-os
 
 *Почему нужен доп. шаг: в проекте без экзокортекса команды `/init-exocortex` ещё нет — сначала «приносим» её.*
 
-**Шаг 1. Принеси команду инициации** (один раз — станет доступна во всех проектах):
+**Шаг 1. Принеси команду инициации** — выполни это **в терминале** (PowerShell / Терминал), один раз; команда станет доступна во всех проектах:
 
 *Windows PowerShell:*
 ```powershell
@@ -70,7 +91,7 @@ git clone --depth 1 https://github.com/cless75/personal-cognitive-os /tmp/pco
 mkdir -p ~/.claude/skills && cp -r /tmp/pco/.claude/skills/init-exocortex ~/.claude/skills/ && rm -rf /tmp/pco
 ```
 
-**Шаг 2. Встрой** — открой свой проект и запусти:
+**Шаг 2. Встрой** — открой свой проект в Claude и **в чате Claude** запусти:
 ```
 /init-exocortex     → выбери «режим B (в этот проект)»
 ```
@@ -89,6 +110,8 @@ Open folder as vault. Плагины не нужны — чистый Markdown. 
 ---
 
 ## Первый цикл
+
+> Все команды ниже (`/init-me`, `/review-concepts`…) пишешь **в чат Claude** — в поле ввода Claude Code или Cowork, не в терминал.
 
 **1. Расскажи о себе:**
 ```

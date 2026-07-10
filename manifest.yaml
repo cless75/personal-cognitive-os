@@ -1,0 +1,14 @@
+type: personal
+name: personal-cognitive-os
+title: "Personal Cognitive OS — твой репозиторий концепций"
+owner: "{{learner}}"
+owner_email: "{{learner_email}}"
+seeded_from: exocortex-bok@707
+created: "{{date}}"
+schema_version: 1
+surfaces:
+  - obsidian
+  - cowork
+  - claude-code
+# Отчуждаемый seed: скачивается напрямую, растёт в личный репозиторий концепций.
+# LLM — внешний сменный движок; когнитивный слой (этот репо) принадлежит тебе.

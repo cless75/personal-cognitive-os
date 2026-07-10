@@ -1,0 +1,13 @@
+# Локальные и приватные артефакты
+/sources/*
+!/sources/README.md
+!/sources/.gitkeep
+
+# Приватный профиль можно исключить из публичных форков — раскомментируй при желании:
+# /About-Me/
+
+# Системное
+.DS_Store
+Thumbs.db
+*.tmp
+.obsidian/workspace*.json

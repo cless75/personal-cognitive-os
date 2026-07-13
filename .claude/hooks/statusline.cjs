@@ -8,6 +8,10 @@
  * (safeRun) → битая секция не роняет бар; degraded на нулях; daily ПО ИМЕНИ (не mtime);
  * headless. Репо полностью функционально БЕЗ скрипта — он опционален.
  *
+ * ОТКЛЮЧЕНИЕ:
+ *  - весь бар — убрать/закомментировать блок `statusLine` в `.claude/settings.json`;
+ *  - скрыть ник работающего (git user.name / системный юзер) — env `EXO_NO_NICK=1`.
+ *
  * VARIANT-driven (один файл для обоих инстансов, upstream-sync не расходится):
  *  - Ex-Base  (manifest без `variant: pro`): 4 строки — Шапка·Режим·Концепты·Очередь.
  *  - Ex-Pro   (`variant: pro`): +Режимы(4)·Подписки(boks/)·Governance(visibility).
@@ -65,12 +69,32 @@ function model() {
 
 // === СЕКЦИИ ===
 
+// Ник работающего: git user.name → системный юзер. Отключается env EXO_NO_NICK=1.
+function workNick() {
+  if (process.env.EXO_NO_NICK) return null;
+  try {
+    const g = execSync('git config user.name', {
+      cwd: ROOT, timeout: 800, stdio: ['ignore', 'pipe', 'ignore'],
+    }).toString().trim();
+    if (g) return g;
+  } catch { /* нет git/имени */ }
+  try { return require('node:os').userInfo().username || null; } catch { return null; }
+}
+
 function sectionHeader(man, isPro) {
   const variant = isPro ? 'Ex-Pro' : 'Ex-Base';
-  const version = man.version || `V${man.schema_version || 1}`;
+  const ver = man.version || `v${man.schema_version || 1}`;      // версия Exocortex (схема раскладки)
+  const tier = man.tier ? ` ${C.dim}·${C.reset} ${man.tier}` : '';
   let owner = man.owner || '—';
   if (/\{\{.*\}\}/.test(owner)) owner = '—';
-  return `${C.bold}${variant} ${version}${C.reset} ${C.dim}●${C.reset} ${owner} ${sep} ${C.cyan}${model()}${C.reset}`;
+  const nick = workNick();
+  const nickTok = nick ? ` ${C.dim}@${nick}${C.reset}` : '';
+  return `${C.bold}${variant}${C.reset} ${ver}${tier} ${C.dim}●${C.reset} ${owner}${nickTok} ${sep} ${C.cyan}${model()}${C.reset}`;
+}
+
+// Рабочий каталог (cwd) — где запущен экзокортекс
+function sectionCwd() {
+  return `📂 ${C.dim}${ROOT}${C.reset}`;
 }
 
 // Режим: Base — константа; Pro — 4 режима + router.
@@ -195,5 +219,6 @@ if (isPro) {
   lines.push(safeRun('boks', () => sectionSubscriptions()));
   lines.push(safeRun('governance', () => sectionGovernance()));
 }
+lines.push(safeRun('cwd', () => sectionCwd()));
 
 process.stdout.write(lines.filter((l) => l != null).join('\n') + '\n');

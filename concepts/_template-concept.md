@@ -5,6 +5,7 @@ domain: general               # strategy | product | thinking | meta | general |
 version: v1-draft
 CANONICAL: false              # true после авторского ревью
 status: pending-author-validation   # → canon-v1 после ревью
+knowledge_status: exploring       # exploring | working | shipped — ось «исследуемое → рабочее → поставляемое» (545-a1 §4)
 CDate: "{{date}}"
 AVP_date:                     # дата авторского ревью (проставляется при финализации)
 Источник:                     # откуда извлечён (файл/сессия), человекочитаемо

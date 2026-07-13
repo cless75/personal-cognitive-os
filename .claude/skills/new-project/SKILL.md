@@ -1,4 +1,5 @@
 ---
+x_generated: "sync-agents — правь канон в tools/skills/"
 name: new-project
 description: >
   Создай проект (папка в projects/ + карточка) и добавь строку в карту проектов

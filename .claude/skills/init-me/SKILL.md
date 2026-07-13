@@ -1,4 +1,5 @@
 ---
+x_generated: "sync-agents — правь канон в tools/skills/"
 name: init-me
 description: >
   Заполни профиль владельца About-Me/about-me.md — из файла (резюме, bio, заметки)

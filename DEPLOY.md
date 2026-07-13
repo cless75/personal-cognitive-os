@@ -58,8 +58,8 @@ git clone https://github.com/cless75/personal-cognitive-os
   ```
   Откроется чат Claude Code прямо в этой папке. Навыки доступны сразу.
 
-- **Claude Cowork** — в приложении Claude открой вкладку **Cowork** → открой папку `personal-cognitive-os` → **Settings → Plugins → Install plugin from folder** → выбери `.claude-plugin/`.
-  *Почему: Cowork, в отличие от Claude Code, не подхватывает навыки из папки сам — их ставят плагином один раз.*
+- **Claude Cowork** — открой вкладку **Cowork** (в **локальном приложении Claude Desktop** или в вебе — шаги одинаковы) → открой папку `personal-cognitive-os` → **Settings → Plugins → Install plugin from folder** → выбери `.claude-plugin/`.
+  *Почему: Cowork, в отличие от Claude Code, не подхватывает навыки из папки сам — их ставят плагином один раз (см. [distributions/README.md](distributions/README.md) — 3 способа).*
 
 ### Шаг 3. Где вводить команды
 
@@ -119,7 +119,7 @@ Open folder as vault. Плагины не нужны — чистый Markdown. 
 ```
 Заполнит `About-Me/about-me.md` — контекст, который Claude учитывает в работе.
 
-**2. Создай первый концепт:** положи документ или запись встречи в `sources/`, затем:
+**2. Создай первый концепт:** положи документ или запись встречи в `sources/inbox/`, затем:
 ```
 /review-concepts
 ```
@@ -151,6 +151,6 @@ Claude извлечёт идеи, покажет черновик **твоими
 
 ---
 
-**Все команды:** `/init-me` · `/review-concepts` · `/new-project` · `/start-session` · `/close-session` · `/list-concepts` · `/init-exocortex` · `/update-exocortex`
+**Все команды:** `/init-me` · `/review-concepts` · `/new-project` · `/start-session` · `/close-session` · `/list-concepts` · `/teach-me` · `/init-exocortex` · `/update-exocortex`
 
 Подробнее — [START-HERE.md](START-HERE.md), [onboarding/](onboarding/).

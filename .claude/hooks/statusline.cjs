@@ -114,7 +114,7 @@ function countNonReadme(dir) {
 }
 function lastDaily() {
   try {
-    const days = fs.readdirSync(path.join(ROOT, 'daily'))
+    const days = fs.readdirSync(path.join(ROOT, 'operation', 'daily'))
       .filter((f) => /^\d{4}-\d{2}-\d{2}.*\.md$/.test(f)).sort(); // ПО ИМЕНИ (канон)
     return days.length ? days[days.length - 1].slice(0, 10) : '—';
   } catch { return '—'; }
@@ -132,8 +132,16 @@ function countProjects() {
   }
   return n;
 }
+function countSources() {
+  // v2: мультиканальный вход — сумма по каналам-дропзонам
+  const channels = ['inbox', 'mail', 'calendar', 'team-sessions', 'ai-sessions'];
+  let hasChannels = false;
+  try { hasChannels = fs.existsSync(path.join(ROOT, 'sources', 'inbox')); } catch {}
+  if (hasChannels) return channels.reduce((n, ch) => n + countNonReadme(path.join('sources', ch)), 0);
+  return countNonReadme('sources'); // fallback: старая плоская раскладка (schema v1)
+}
 function sectionQueue() {
-  return `📥 Sources ${countNonReadme('sources')} ${sep} 🗓 Last ${lastDaily()} ${sep} 📁 Projects ${countProjects()}`;
+  return `📥 Sources ${countSources()} ${sep} 🗓 Last ${lastDaily()} ${sep} 📁 Projects ${countProjects()}`;
 }
 
 // --- Pro: подписки (boks/) + свежесть из локального git (без сети) ---
@@ -171,9 +179,11 @@ function sectionGovernance() {
 }
 
 // === СБОРКА ===
-const rawManifest = readText(path.join(ROOT, 'manifest.yaml'));
+const rawManifest = readText(path.join(ROOT, '.exocortex', 'manifest.yaml'))
+  || readText(path.join(ROOT, 'manifest.yaml')); // fallback: старая раскладка (schema v1)
 const man = frontmatter(rawManifest ? `---\n${rawManifest}\n---` : null);
-const isPro = man.variant === 'pro' || (rawManifest ? /^modes:\s*$/m.test(rawManifest) : false);
+const isPro = man.variant === 'pro' || man.tier === 'pro'
+  || (rawManifest ? /^modes:\s*$/m.test(rawManifest) : false);
 
 const lines = [
   safeRun('header', () => sectionHeader(man, isPro)),

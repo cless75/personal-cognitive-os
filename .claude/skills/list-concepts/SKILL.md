@@ -1,4 +1,5 @@
 ---
+x_generated: "sync-agents — правь канон в tools/skills/"
 name: list-concepts
 description: >
   Обзор личного репозитория концептов: список карточек, статусы draft/canon,

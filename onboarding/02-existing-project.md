@@ -2,7 +2,7 @@
 
 Уже есть проект (в Claude Code или Cowork), созданный без Exocortex Base? Не нужно заводить отдельный репозиторий — добавь экзокортекс **на месте** (in-place), недеструктивно.
 
-Механика — навык `/init-exocortex` → **режим B (in-place)**: добавляет недостающие папки (`concepts/`, `About-Me/`, `sources/`, `projects/`, `daily/`, `onboarding/`), **дописывает** блок карты проектов в `CLAUDE.md` и подключает навыки — **ничего не перезаписывая**.
+Механика — навык `/init-exocortex` → **режим B (in-place)**: добавляет недостающие зоны (`concepts/`, `About-Me/`, `sources/` с каналами, `operation/` (sessions+daily), `projects/`, `areas/`, `tools/skills/` (канон), `.exocortex/`, `onboarding/`), **дописывает** блок карты проектов в `CLAUDE.md` и подключает навыки — **ничего не перезаписывая**.
 
 Загвоздка одна: в проекте без seed команды `/init-exocortex` ещё нет. Сначала сделай её доступной.
 

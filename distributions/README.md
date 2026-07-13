@@ -18,7 +18,7 @@
 Compress-Archive -Path .\.claude\skills\review-concepts, `
   .\.claude\skills\init-me, .\.claude\skills\new-project, `
   .\.claude\skills\start-session, .\.claude\skills\close-session, `
-  .\.claude\skills\list-concepts `
+  .\.claude\skills\list-concepts, .\.claude\skills\teach-me `
   -DestinationPath .\distributions\personal-cognitive-os-skills.zip -Force
 ```
 
@@ -26,7 +26,7 @@ Compress-Archive -Path .\.claude\skills\review-concepts, `
 
 ```bash
 cd .claude/skills && zip -r ../../distributions/personal-cognitive-os-skills.zip \
-  review-concepts init-me new-project start-session close-session list-concepts && cd ../..
+  review-concepts init-me new-project start-session close-session list-concepts teach-me && cd ../..
 ```
 
 ## Способ 3 — глобальная команда инициации `/init-exocortex`

@@ -1,6 +1,6 @@
 {
   "name": "personal-cognitive-os",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Навыки персонального репозитория концептов: авторский ревью концептов, ведение проектов и сессий, инициализация. Для Claude Cowork/Code.",
   "author": "seeded from exocortex-bok@707",
   "homepage": "https://github.com/cless75/personal-cognitive-os",
@@ -11,7 +11,9 @@
     ".claude/skills/start-session",
     ".claude/skills/close-session",
     ".claude/skills/list-concepts",
-    ".claude/skills/update-exocortex"
+    ".claude/skills/update-exocortex",
+    ".claude/skills/sync-agents",
+    ".claude/skills/teach-me"
   ],
   "commands": ".claude/commands"
 }

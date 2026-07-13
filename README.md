@@ -13,7 +13,9 @@ Claude уже установлен. Два входа:
 - **Быстрый (в Claude Cowork):** запусти `/init-exocortex` — команда развернёт и персонализирует репозиторий за тебя.
 - **Ручной:** `git clone` этого репо → открой папку в Cowork или Obsidian → запусти `/init-me`.
 
-Дальше: положи свой первый файл в `sources/` → запусти `/review-concepts` → пройди авторское ревью → первая карточка концепта появится в `concepts/`.
+Дальше: положи свой первый файл в `sources/inbox/` → запусти `/review-concepts` → пройди авторское ревью → первая карточка концепта появится в `concepts/`.
+
+Не уверен в концепциях? **`/teach-me`** — интерактивный тур по ключевым идеям экзокортекса (сократический диалог, не лекция).
 
 Подробно — [DEPLOY.md](DEPLOY.md) (развёртывание), [START-HERE.md](START-HERE.md) и [onboarding/01-first-review.md](onboarding/01-first-review.md).
 
@@ -23,16 +25,19 @@ Claude уже установлен. Два входа:
 |---|---|
 | `concepts/` | ★ твой репозиторий концептов (растёт) |
 | `About-Me/` | профиль: контексты, роль, стиль, ценности |
-| `sources/` | drop-zone: сюда кладёшь документы/транскрипты для обработки |
+| `sources/` | вход: каналы-дропзоны `inbox/` · `mail/` · `calendar/` · `team-sessions/` · `ai-sessions/` |
+| `operation/` | `sessions/` — сессии-атомы · `daily/` — журнал дней |
 | `projects/` | твои проекты (одна папка = один проект) |
-| `daily/` | журнал сессий |
+| `areas/` | направления жизни/деятельности (долгоживущие) |
+| `tools/` | мастерская: `skills/` — **канон навыков** · `mcp/` · `bok-adaptation/` |
+| `.exocortex/` | системная зона: manifest (уровень `tier`), модель, агенты, проекции |
 | `onboarding/` | как начать; поверхности (Obsidian / Cowork) |
-| `.claude/` | навыки и команды (`/review-concepts`, `/new-project`, …) |
-| `CLAUDE.md` | правила репо + авто-карта твоих проектов |
+| `.claude/`, `AGENTS.md` | генерируемые проекции для агентов (`/sync-agents`) — руками не правятся |
+| `CLAUDE.md` | тонкий вход Claude + авто-карта твоих проектов |
 
 ## Команды
 
-См. полный список в [START-HERE.md](START-HERE.md#команды). Ядро: `/review-concepts`, `/init-me`, `/new-project`, `/start-session`, `/close-session`, `/list-concepts`.
+См. полный список в [START-HERE.md](START-HERE.md#команды). Ядро: `/review-concepts`, `/init-me`, `/new-project`, `/start-session`, `/close-session`, `/list-concepts`, `/teach-me`.
 
 ---
 

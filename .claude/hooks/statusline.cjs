@@ -81,7 +81,14 @@ function workNick() {
   try { return require('node:os').userInfo().username || null; } catch { return null; }
 }
 
-function sectionHeader(man, isPro) {
+// Режим-токен в шапку (поднят выше): Base — константа Исполнение; Pro — N режимов + router.
+function modeToken(man, isPro, raw) {
+  if (!isPro) return `⚙️ Исполнение`;
+  const n = countModes(raw) || 4;
+  const router = man.router ? `${C.green}on${C.reset}` : `${C.dim}off${C.reset}`;
+  return `🧭 ${C.bold}${n}${C.reset} ${C.dim}[🔍⚙️🎓🤝]${C.reset} router:${router}`;
+}
+function sectionHeader(man, isPro, raw) {
   const variant = isPro ? 'Ex-Pro' : 'Ex-Base';
   const ver = man.version || `v${man.schema_version || 1}`;      // версия Exocortex (схема раскладки)
   const tier = man.tier ? ` ${C.dim}·${C.reset} ${man.tier}` : '';
@@ -89,7 +96,7 @@ function sectionHeader(man, isPro) {
   if (/\{\{.*\}\}/.test(owner)) owner = '—';
   const nick = workNick();
   const nickTok = nick ? ` ${C.dim}@${nick}${C.reset}` : '';
-  return `${C.bold}${variant}${C.reset} ${ver}${tier} ${C.dim}●${C.reset} ${owner}${nickTok} ${sep} ${C.cyan}${model()}${C.reset}`;
+  return `${C.bold}${variant}${C.reset} ${ver}${tier} ${C.dim}·${C.reset} ${modeToken(man, isPro, raw)} ${C.dim}●${C.reset} ${owner}${nickTok} ${sep} ${C.cyan}${model()}${C.reset}`;
 }
 
 // Рабочий каталог (cwd) — где запущен экзокортекс
@@ -111,23 +118,19 @@ function countModes(raw) {
   }
   return n;
 }
-function sectionMode(man, isPro, raw) {
-  if (!isPro) return `⚙️  Режим ${sep} Исполнение`;
-  const n = countModes(raw) || 4;
-  const router = man.router ? `${C.green}on${C.reset}` : `${C.dim}off${C.reset}`;
-  return `🧭 Режимы ${C.bold}${n}${C.reset} ${C.dim}[🔍⚙️🎓🤝]${C.reset} ${sep} router: ${router}`;
-}
-
-function sectionConcepts() {
+// Знание+вход одной строкой: Concepts (total·canon) │ ожидание AVP │ Sources │ Last │ Projects.
+// AVP = Author Validation Pass: концепты в статусе pending-author-validation (ждут авторского ревью).
+// Метрика работает и в Base, и в Pro (скан concepts/, не зависит от variant).
+function sectionKnowledge() {
   const files = listMd('concepts').filter((f) => f !== '_template-concept.md' && f.toLowerCase() !== 'readme.md');
-  let canon = 0, draft = 0;
+  let canon = 0, avp = 0;
   for (const f of files) {
     const fm = frontmatter(readText(path.join(ROOT, 'concepts', f)));
     if (String(fm.CANONICAL).toLowerCase() === 'true') canon++;
-    else if (fm.status === 'pending-author-validation') draft++;
+    else if (fm.status === 'pending-author-validation') avp++;   // ожидание AVP
   }
-  const draftTok = draft > 0 ? `${C.yellow}draft-pending ${draft}${C.reset}` : 'draft-pending 0';
-  return `📇 Concepts ${C.bold}${files.length}${C.reset} ${C.dim}(${C.reset}canon ${C.green}${canon}${C.reset} / ${draftTok}${C.dim})${C.reset}`;
+  const avpTok = avp > 0 ? `${C.yellow}⏳ AVP ${avp}${C.reset}` : `${C.dim}⏳ AVP 0${C.reset}`;
+  return `📇 Concepts ${C.bold}${files.length}${C.reset} ${C.dim}·${C.reset} canon ${C.green}${canon}${C.reset} ${sep} ${avpTok} ${sep} 📥 Sources ${countSources()} ${sep} 🗓 Last ${lastDaily()} ${sep} 📁 Projects ${countProjects()}`;
 }
 
 function countNonReadme(dir) {
@@ -164,10 +167,6 @@ function countSources() {
   if (hasChannels) return channels.reduce((n, ch) => n + countNonReadme(path.join('sources', ch)), 0);
   return countNonReadme('sources'); // fallback: старая плоская раскладка (schema v1)
 }
-function sectionQueue() {
-  return `📥 Sources ${countSources()} ${sep} 🗓 Last ${lastDaily()} ${sep} 📁 Projects ${countProjects()}`;
-}
-
 // --- Pro: подписки (boks/) + свежесть из локального git (без сети) ---
 function bokFreshness(id) {
   try {
@@ -210,10 +209,8 @@ const isPro = man.variant === 'pro' || man.tier === 'pro'
   || (rawManifest ? /^modes:\s*$/m.test(rawManifest) : false);
 
 const lines = [
-  safeRun('header', () => sectionHeader(man, isPro)),
-  safeRun('mode', () => sectionMode(man, isPro, rawManifest)),
-  safeRun('concepts', () => sectionConcepts()),
-  safeRun('queue', () => sectionQueue()),
+  safeRun('header', () => sectionHeader(man, isPro, rawManifest)),
+  safeRun('knowledge', () => sectionKnowledge()),
 ];
 if (isPro) {
   lines.push(safeRun('boks', () => sectionSubscriptions()));

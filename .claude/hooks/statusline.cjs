@@ -24,11 +24,15 @@ const { execSync } = require('node:child_process');
 
 const ROOT = process.cwd();
 
-const C = {
-  reset: '\x1b[0m', bold: '\x1b[1m', dim: '\x1b[2m',
-  cyan: '\x1b[36m', green: '\x1b[32m', yellow: '\x1b[33m', red: '\x1b[31m',
-};
-const sep = `${C.dim}│${C.reset}`;
+// EXO_PLAIN=1 — без ANSI (для навыка `status`: печать в чат Cowork/Codex, где escape-коды не рендерятся).
+const PLAIN = !!process.env.EXO_PLAIN;
+const C = PLAIN
+  ? { reset: '', bold: '', dim: '', cyan: '', green: '', yellow: '', red: '' }
+  : {
+      reset: '\x1b[0m', bold: '\x1b[1m', dim: '\x1b[2m',
+      cyan: '\x1b[36m', green: '\x1b[32m', yellow: '\x1b[33m', red: '\x1b[31m',
+    };
+const sep = PLAIN ? '│' : `${C.dim}│${C.reset}`;
 
 function safeRun(label, fn) {
   try { const v = fn(); return v == null ? null : v; }

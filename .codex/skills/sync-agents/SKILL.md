@@ -1,4 +1,5 @@
 ---
+x_generated: "sync-agents — правь канон в tools/skills/"
 name: sync-agents
 description: >
   Генерация agent-проекций из канона экзокортекса: читает .exocortex/manifest.yaml

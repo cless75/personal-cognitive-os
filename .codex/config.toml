@@ -1,0 +1,11 @@
+# .codex/config.toml — project-scoped конфиг Codex CLI (генерируемая проекция, DM-EXO-10)
+# Источник: tools/mcp/ (канон MCP-серверов). Правь канон, затем /sync-agents — не редактируй здесь руками.
+# Навыки экзокортекса Codex грузит нативно из .codex/skills/ (формат SKILL.md).
+
+# MCP-серверы проецируются в секции [mcp_servers.<name>] из tools/mcp/.
+# Сейчас канон tools/mcp/ пуст → серверов нет. Пример stdio-сервера (раскомментируй в каноне):
+#
+# [mcp_servers.example]
+# command = "npx"
+# args = ["-y", "@modelcontextprotocol/server-filesystem", "."]
+# env = { }

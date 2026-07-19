@@ -1,4 +1,5 @@
 ---
+x_generated: "sync-agents — правь канон в tools/skills/"
 name: update-exocortex
 description: >
   Обнови экзокортекс: (A/B) подтяни последнюю версию seed — навыки, шаблоны,
@@ -19,7 +20,7 @@ version: 2
 | Обновляется (seed-managed) | НЕ трогается (user-owned) |
 |---|---|
 | `tools/skills/*` (канон навыков), `.exocortex/model.md`, `.exocortex/projections/*` | `concepts/*.md` (твои карточки, кроме `_template-concept.md`) |
-| проекции: `.claude/*`, `.claude-plugin/*`, `.codex/*`, `AGENTS.md` (перегенерируются `/sync-agents`) | `About-Me/*` (профиль) |
+| проекции: `.claude/*`, `.claude-plugin/*`, `AGENTS.md` (перегенерируются `/sync-agents`) | `About-Me/*` (профиль) |
 | `concepts/_template-concept.md`, `projects/_template-project.md`, `areas/_template-area.md` | `projects/<slug>/*`, `areas/*` (кроме шаблона) |
 | `README.md`, `START-HERE.md`, `DEPLOY.md`, `onboarding/*`, `distributions/*`, `*/README.md`, `LICENSE`, `.gitignore` | `operation/sessions/*`, `operation/daily/*` |
 | `.exocortex/manifest.yaml` — только schema-поля; значения владельца (owner, agents, tier, init_state) сохраняются | `sources/*` содержимое каналов |

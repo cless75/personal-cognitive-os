@@ -14,11 +14,13 @@ init_state: seed           # seed → agents → scaffold → profile → first-
 agents:
   - claude-code
   - cowork
+  - codex
 
 surfaces:
   - obsidian
   - cowork
   - claude-code
+  - codex
 
 # Отчуждаемый seed: скачивается напрямую, растёт в личный репозиторий концепций.
 # LLM — внешний сменный движок; когнитивный слой (этот репо) принадлежит тебе.

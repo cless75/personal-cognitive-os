@@ -17,6 +17,7 @@
 - [onboarding/01-first-review.md](onboarding/01-first-review.md) — первый ревью, шаг за шагом.
 - [onboarding/02-existing-project.md](onboarding/02-existing-project.md) — добавить экзокортекс в уже существующий проект Cowork (in-place).
 - [onboarding/surfaces.md](onboarding/surfaces.md) — работать в Obsidian или в Cowork.
+- [onboarding/course/00-start.md](onboarding/course/00-start.md) — ★ универсальный онбординг-курс «Обучение с ИИ + работа на платформе» (6 модулей M0–M5, self-paced).
 - [.exocortex/model.md](.exocortex/model.md) — модель зон, принципы, эволюционная лестница.
 - [CLAUDE.md](CLAUDE.md) — тонкий вход Claude + живая карта проектов.
 

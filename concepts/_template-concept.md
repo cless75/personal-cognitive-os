@@ -6,6 +6,9 @@ version: v1-draft
 CANONICAL: false              # true после авторского ревью
 status: pending-author-validation   # → canon-v1 после ревью
 knowledge_status: exploring       # exploring | working | shipped — ось «исследуемое → рабочее → поставляемое» (545-a1 §4)
+mapping_530_status: pending       # pending until DM-EXO-12 acceptance; не означает 530 Core-Concepts
+# 530 future-contract fields (do not fill mechanically): node_type, abstraction_level,
+# cynefin_status, canonical_scope, subject_bindings, author_id, expert_bok
 CDate: "{{date}}"
 AVP_date:                     # дата авторского ревью (проставляется при финализации)
 Источник:                     # откуда извлечён (файл/сессия), человекочитаемо
@@ -53,6 +56,19 @@ source_session:               # session_id атома-источника, есл
 ## Связи с другими концептами
 
 - [[{концепт}]] — {как связаны}
+
+---
+
+## 530 mapping (pending)
+
+> `concepts/` — локальный каталог 707, не 530 `Core-Concepts`. Заполняется только после отдельного
+> решения DM-EXO-12 или при явной типизации карточки.
+
+- `node_type`: pending
+- `abstraction_level`: pending
+- `cynefin_status`: pending
+- `canonical_scope`: pending
+- `subject_bindings`: pending
 
 ---
 

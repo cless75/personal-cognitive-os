@@ -6,14 +6,16 @@
 
 1. **Инициация** — `/init-exocortex` (в Cowork) *или* `git clone` + `/init-me` (вручную). См. [onboarding/01-first-review.md](onboarding/01-first-review.md).
 2. **Заполни профиль** — [About-Me/about-me.md](About-Me/about-me.md) (навык `/init-me` делает это в диалоге).
-3. **Первый концепт** — положи файл в [sources/inbox/](sources/inbox/) → `/review-concepts` → пройди авторское ревью → карточка в [concepts/](concepts/).
-4. **Заведи проект** — `/new-project`, затем `/start-session` / `/close-session` для ведения работы.
+3. **Первая гипотеза** — если есть сырое допущение, зафиксируй его через `/capture-hypothesis` в [discovery/](discovery/), без канонизации.
+4. **Первый концепт** — положи файл в [sources/inbox/](sources/inbox/) → `/review-concepts` → пройди авторское ревью → карточка в [concepts/](concepts/).
+5. **Заведи проект** — `/new-project`, затем `/start-session` / `/close-session` для ведения работы.
 
 ## Ключевые артефакты
 
 - [README.md](README.md) — что это и зачем.
 - [About-Me/about-me.md](About-Me/about-me.md) — твой профиль (знания о тебе).
 - [concepts/README.md](concepts/README.md) — что такое карточка концепта, статусы draft → canon.
+- [discovery/README.md](discovery/README.md) — гипотезы и исследовательские вопросы до авторского ревью.
 - [onboarding/01-first-review.md](onboarding/01-first-review.md) — первый ревью, шаг за шагом.
 - [onboarding/02-existing-project.md](onboarding/02-existing-project.md) — добавить экзокортекс в уже существующий проект Cowork (in-place).
 - [onboarding/surfaces.md](onboarding/surfaces.md) — работать в Obsidian или в Cowork.
@@ -27,6 +29,7 @@
 |---|---|
 | `/init-exocortex` | Развернуть и персонализировать репо (прямая инициация в Cowork) |
 | `/init-me` | Заполнить профиль `About-Me/about-me.md` |
+| `/capture-hypothesis` | Зафиксировать гипотезу или исследовательский вопрос в `discovery/` без канонизации |
 | `/review-concepts` | ★ Материал (документ/транскрипт) → авторское ревью → карточка концепта |
 | `/list-concepts` | Обзор твоего репозитория концептов |
 | `/teach-me` | Интерактивное обучение концепциям экзокортекса (тур / концепт / разбор затруднения) |

@@ -38,8 +38,8 @@ distribution: user-level   # ~/.claude/skills (Cowork: Upload ZIP), не реп�
 **Режим B (НЕДЕСТРУКТИВНО — ничего не удаляем и не перезаписываем):**
 1. Скан проекта: что уже есть (`CLAUDE.md`, `concepts/`, `.claude/`, свой плагин); покажи и подтверди встраивание.
 2. Подтяни seed во временный каталог (`git clone --depth 1 … <tmp>`; без сети — встроенный шаблон).
-3. Встрой seed-managed: канон навыков `tools/skills/*`, системную зону `.exocortex/*`, шаблоны и README зон (`concepts/_template-concept.md`, `projects/_template-project.md`, `areas/_template-area.md`, `*/README.md`), `onboarding/*`, `distributions/*`, `DEPLOY.md`, `START-HERE.md` — копируй ТОЛЬКО отсутствующее.
-4. Создай пустые user-зоны, если их нет: `concepts/`, `About-Me/about-me.md` (из шаблона), `sources/{inbox,mail,calendar,team-sessions,ai-sessions}/`, `operation/{sessions,daily}/`, `projects/`, `areas/`.
+3. Встрой seed-managed: канон навыков `tools/skills/*`, системную зону `.exocortex/*`, шаблоны и README зон (`concepts/_template-concept.md`, `discovery/_template-hypothesis.md`, `projects/_template-project.md`, `areas/_template-area.md`, `*/README.md`), `onboarding/*`, `distributions/*`, `DEPLOY.md`, `START-HERE.md` — копируй ТОЛЬКО отсутствующее.
+4. Создай пустые user-зоны, если их нет: `concepts/`, `discovery/`, `About-Me/about-me.md` (из шаблона), `sources/{inbox,mail,calendar,team-sessions,ai-sessions}/`, `operation/{sessions,daily}/`, `projects/`, `areas/`.
 5. `CLAUDE.md` — слияние, не перезапись: допиши секцию «## Personal Cognitive OS» + блок `<!-- projects-map:start -->…<!-- projects-map:end -->`; маркеры уже есть — не дублируй. Удали `<tmp>`.
 
 → `init_state: scaffold`.
@@ -56,7 +56,7 @@ distribution: user-level   # ~/.claude/skills (Cowork: Upload ZIP), не реп�
 
 ## Шаг 5 — Такт 1 «Первый концепт»
 
-Предложи положить документ/транскрипт в `sources/inbox/` и запустить `/review-concepts` — ценность в первый час: «из моего материала — моё знание». После первой карточки → `init_state: complete`; покажи чек-лист первых шагов (`START-HERE.md`) и предложи `/teach-me` для тура по концепциям.
+Предложи зафиксировать сырое допущение через `/capture-hypothesis` или положить документ/транскрипт в `sources/inbox/` и запустить `/review-concepts` — ценность в первый час: «из моего материала — моё знание». После первой карточки → `init_state: complete`; покажи чек-лист первых шагов (`START-HERE.md`) и предложи `/teach-me` для тура по концепциям.
 
 ## Правила
 
@@ -66,4 +66,4 @@ distribution: user-level   # ~/.claude/skills (Cowork: Upload ZIP), не реп�
 
 ## Выход
 
-Развёрнутый (или дополненный) экзокортекс: 7 зон + `.exocortex/`, проекции выбранных агентов, заполненный профиль, владелец знает следующий шаг.
+Развёрнутый (или дополненный) экзокортекс: зоны ядра + `discovery/` + `.exocortex/`, проекции выбранных агентов, заполненный профиль, владелец знает следующий шаг.

@@ -122,7 +122,7 @@ function countModes(raw) {
   }
   return n;
 }
-// Знание+вход одной строкой: Concepts (total·canon) │ ожидание AVP │ Sources │ Last │ Projects.
+// Знание+вход одной строкой: Concepts (total·canon) │ ожидание AVP │ Discovery │ Sources │ Last │ Projects.
 // AVP = Author Validation Pass: концепты в статусе pending-author-validation (ждут авторского ревью).
 // Метрика работает и в Base, и в Pro (скан concepts/, не зависит от variant).
 function sectionKnowledge() {
@@ -134,13 +134,20 @@ function sectionKnowledge() {
     else if (fm.status === 'pending-author-validation') avp++;   // ожидание AVP
   }
   const avpTok = avp > 0 ? `${C.yellow}⏳ AVP ${avp}${C.reset}` : `${C.dim}⏳ AVP 0${C.reset}`;
-  return `📇 Concepts ${C.bold}${files.length}${C.reset} ${C.dim}·${C.reset} canon ${C.green}${canon}${C.reset} ${sep} ${avpTok} ${sep} 📥 Sources ${countSources()} ${sep} 🗓 Last ${lastDaily()} ${sep} 📁 Projects ${countProjects()}`;
+  return `📇 Concepts ${C.bold}${files.length}${C.reset} ${C.dim}·${C.reset} canon ${C.green}${canon}${C.reset} ${sep} ${avpTok} ${sep} 🔎 Discovery ${countDiscovery()} ${sep} 📥 Sources ${countSources()} ${sep} 🗓 Last ${lastDaily()} ${sep} 📁 Projects ${countProjects()}`;
 }
 
 function countNonReadme(dir) {
   try {
     return fs.readdirSync(path.join(ROOT, dir))
       .filter((f) => f.toLowerCase() !== 'readme.md' && f !== '.gitkeep' && !f.startsWith('.')).length;
+  } catch { return 0; }
+}
+function countDiscovery() {
+  try {
+    return fs.readdirSync(path.join(ROOT, 'discovery'))
+      .filter((f) => f.toLowerCase().endsWith('.md'))
+      .filter((f) => f.toLowerCase() !== 'readme.md' && f !== '_template-hypothesis.md').length;
   } catch { return 0; }
 }
 function lastDaily() {

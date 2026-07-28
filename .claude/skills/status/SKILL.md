@@ -3,7 +3,7 @@ x_generated: "sync-agents — правь канон в tools/skills/"
 name: status
 description: >
   Кросс-поверхностный статус экзокортекса, напечатанный в чат: вариант/уровень/режим,
-  концепты (total·canon·AVP), sources, последний день, проекты; в Pro — режимы·подписки·governance.
+  концепты (total·canon·AVP), discovery, sources, последний день, проекты; в Pro — режимы·подписки·governance.
   Аналог CLI-statusline для сред без хука (Cowork-GUI, Codex). Use when «статус»,
   «покажи состояние экзокортекса», «где я», /status.
 kind: simple
@@ -19,8 +19,8 @@ kind: simple
    ```
    EXO_PLAIN=1 node .claude/hooks/statusline.cjs
    ```
-   (PowerShell: `$env:EXO_PLAIN=1; node .claude/hooks/statusline.cjs`.) Скрипт read-only, zero-dep, читает `.exocortex/manifest.yaml`, `concepts/`, `operation/`, `sources/`, `boks/`. `EXO_PLAIN=1` убирает ANSI-коды, чтобы вывод читался в чате.
-2. **Если node недоступен** — собери те же цифры вручную (read-only): вариант/tier/режим из `.exocortex/manifest.yaml`; Concepts total/canon/AVP из `concepts/*.md` (`CANONICAL: true` / `status: pending-author-validation`); Sources — сумма файлов по каналам `sources/{inbox,mail,calendar,team-sessions,ai-sessions}/`; Last — последний по имени `operation/daily/YYYY-MM-DD*.md`; Projects — строки блока `projects-map` в `CLAUDE.md`; Pro — подписки из `boks/`, governance по `visibility` концептов.
+   (PowerShell: `$env:EXO_PLAIN=1; node .claude/hooks/statusline.cjs`.) Скрипт read-only, zero-dep, читает `.exocortex/manifest.yaml`, `concepts/`, `discovery/`, `operation/`, `sources/`, `boks/`. `EXO_PLAIN=1` убирает ANSI-коды, чтобы вывод читался в чате.
+2. **Если node недоступен** — собери те же цифры вручную (read-only): вариант/tier/режим из `.exocortex/manifest.yaml`; Concepts total/canon/AVP из `concepts/*.md` (`CANONICAL: true` / `status: pending-author-validation`); Discovery — файлы в `discovery/*.md` кроме шаблона и README; Sources — сумма файлов по каналам `sources/{inbox,mail,calendar,team-sessions,ai-sessions}/`; Last — последний по имени `operation/daily/YYYY-MM-DD*.md`; Projects — строки блока `projects-map` в `CLAUDE.md`; Pro — подписки из `boks/`, governance по `visibility` концептов.
 3. **Покажи вывод** дословно (моноширинно). Ничего не пиши в файлы — навык read-only.
 
 ## Выход

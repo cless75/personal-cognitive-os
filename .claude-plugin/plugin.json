@@ -6,6 +6,7 @@
   "homepage": "https://github.com/cless75/personal-cognitive-os",
   "skills": [
     ".claude/skills/review-concepts",
+    ".claude/skills/capture-hypothesis",
     ".claude/skills/init-me",
     ".claude/skills/new-project",
     ".claude/skills/start-session",

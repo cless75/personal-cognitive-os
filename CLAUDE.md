@@ -11,18 +11,20 @@
 
 ## Карта зон (кратко)
 
-`concepts/` знание · `About-Me/` профиль · `operation/` sessions+daily · `sources/` вход (inbox/mail/calendar/team-sessions/ai-sessions) · `projects/` дела · `areas/` направления · `tools/` мастерская (канон навыков в `tools/skills/`) · `.exocortex/` системная зона.
+`concepts/` знание · `discovery/` гипотезы и исследовательские вопросы · `About-Me/` профиль · `operation/` sessions+daily · `sources/` вход (inbox/mail/calendar/team-sessions/ai-sessions) · `projects/` дела · `areas/` направления · `tools/` мастерская (канон навыков в `tools/skills/`) · `.exocortex/` системная зона.
 
 ## Принципы (минимум)
 
 - **Один концепт = одно ядро смысла**; карточки в `concepts/`.
+- **Discovery ≠ canon:** `discovery/` фиксирует гипотезы до авторского ревью; в `concepts/` они попадают только через `/review-concepts`.
 - **Ничего не канонизируется без явного вердикта владельца** (draft → канон только через авторское ревью).
+- **530 future-contract:** `concepts/` — локальный каталог 707, не 530 `Core-Concepts`; 530-поля добавляются только после DM-EXO-12, без механической миграции.
 - **Чистый Markdown, без обязательных плагинов**; всё работает после копирования на другую машину.
 - **Канон навыков — `tools/skills/`**; `.claude/` — генерируемая проекция (перегенерация: `/sync-agents`), руками не правится.
 
 ## Навыки
 
-Ядро: `/review-concepts` (материал → авторское ревью → концепт), `/init-me`, `/new-project`, `/start-session`, `/close-session`, `/list-concepts`, `/teach-me`, `/sync-agents`, `/update-exocortex`. Проектные навыки ведут диалог через выбор вариантов (AskUserQuestion), не свободным текстом.
+Ядро: `/capture-hypothesis` (гипотеза → `discovery/` без канонизации), `/review-concepts` (материал → авторское ревью → концепт), `/init-me`, `/new-project`, `/start-session`, `/close-session`, `/list-concepts`, `/teach-me`, `/sync-agents`, `/update-exocortex`. Проектные навыки ведут диалог через выбор вариантов (AskUserQuestion), не свободным текстом.
 
 ## Карта проектов
 

@@ -17,7 +17,7 @@
 ## Карта зон
 
 {{ZONE_MAP}}
-<!-- напр.: concepts/ знание · About-Me/ профиль · operation/ sessions+daily · sources/ вход · projects/ дела · areas/ направления · tools/ мастерская · .exocortex/ системная зона -->
+<!-- напр.: concepts/ знание · discovery/ гипотезы · About-Me/ профиль · operation/ sessions+daily · sources/ вход · projects/ дела · areas/ направления · tools/ мастерская · .exocortex/ системная зона -->
 
 ## Ключевые навыки
 

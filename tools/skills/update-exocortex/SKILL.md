@@ -20,7 +20,7 @@ version: 2
 |---|---|
 | `tools/skills/*` (канон навыков), `.exocortex/model.md`, `.exocortex/projections/*` | `concepts/*.md` (твои карточки, кроме `_template-concept.md`) |
 | проекции: `.claude/*`, `.claude-plugin/*`, `.codex/*`, `AGENTS.md` (перегенерируются `/sync-agents`) | `About-Me/*` (профиль) |
-| `concepts/_template-concept.md`, `projects/_template-project.md`, `areas/_template-area.md` | `projects/<slug>/*`, `areas/*` (кроме шаблона) |
+| `concepts/_template-concept.md`, `discovery/_template-hypothesis.md`, `projects/_template-project.md`, `areas/_template-area.md` | `discovery/*.md` (кроме шаблона), `projects/<slug>/*`, `areas/*` (кроме шаблона) |
 | `README.md`, `START-HERE.md`, `DEPLOY.md`, `onboarding/*`, `distributions/*`, `*/README.md`, `LICENSE`, `.gitignore` | `operation/sessions/*`, `operation/daily/*` |
 | `.exocortex/manifest.yaml` — только schema-поля; значения владельца (owner, agents, tier, init_state) сохраняются | `sources/*` содержимое каналов |
 | — | блок `<!-- projects-map -->` в `CLAUDE.md` |
@@ -60,7 +60,7 @@ version: 2
    | `sources/*` (файлы сырья) | `sources/inbox/*` |
    | `.claude/skills/` | `tools/skills/` (канон) |
    | `manifest.yaml` | `.exocortex/manifest.yaml` |
-2. **Создай недостающее:** `operation/sessions/` · каналы `sources/{inbox,mail,calendar,team-sessions,ai-sessions}/` (+`.gitkeep`) · `areas/` (+шаблон) · `tools/{mcp,bok-adaptation}/` · `.exocortex/{model.md, agents/, projections/}` — README и шаблоны бери из seed.
+2. **Создай недостающее:** `discovery/` (+ README и `_template-hypothesis.md`) · `operation/sessions/` · каналы `sources/{inbox,mail,calendar,team-sessions,ai-sessions}/` (+`.gitkeep`) · `areas/` (+шаблон) · `tools/{mcp,bok-adaptation}/` · `.exocortex/{model.md, agents/, projections/}` — README и шаблоны бери из seed.
 3. **Манифест:** добавь `tier:` (по умолчанию `base`), `schema_version: 2`, `agents:` (спроси владельца), сохранив его значения.
 4. **Правка путей:** grep по каталогу на старые пути (`daily/`, `sources/` без канала, `manifest.yaml` в корне, `.claude/skills` как канон) — обнови в навыках, доках, хуках (напр. `statusline.cjs`). Чек: grep старых путей возвращает ноль (кроме исторических записей в user-контенте — их не трогай).
 5. **Проекции:** `/sync-agents` → `.claude/` перегенерирован, `CLAUDE.md`/`AGENTS.md` — тонкие входы (projects-map перенесён как есть).

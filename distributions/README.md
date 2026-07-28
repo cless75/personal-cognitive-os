@@ -15,7 +15,8 @@
 Сборка (PowerShell, из корня репо):
 
 ```powershell
-Compress-Archive -Path .\.claude\skills\review-concepts, `
+Compress-Archive -Path .\.claude\skills\capture-hypothesis, `
+  .\.claude\skills\review-concepts, `
   .\.claude\skills\init-me, .\.claude\skills\new-project, `
   .\.claude\skills\start-session, .\.claude\skills\close-session, `
   .\.claude\skills\list-concepts, .\.claude\skills\teach-me `
@@ -26,7 +27,7 @@ Compress-Archive -Path .\.claude\skills\review-concepts, `
 
 ```bash
 cd .claude/skills && zip -r ../../distributions/personal-cognitive-os-skills.zip \
-  review-concepts init-me new-project start-session close-session list-concepts teach-me update-exocortex sync-agents && cd ../..
+  capture-hypothesis review-concepts init-me new-project start-session close-session list-concepts teach-me update-exocortex sync-agents && cd ../..
 ```
 
 ## Способ 3 — глобальная команда инициации `/init-exocortex`

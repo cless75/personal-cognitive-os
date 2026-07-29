@@ -3,7 +3,8 @@
 !/sources/README.md
 !/sources/*/
 !/sources/*/.gitkeep
-!/sources/*/README.md      # правила канала — часть сида (напр. sources/library/README.md)
+# правила канала — часть сида (напр. sources/library/README.md)
+!/sources/*/README.md
 
 # Приватный профиль можно исключить из публичных форков — раскомментируй при желании:
 # /About-Me/

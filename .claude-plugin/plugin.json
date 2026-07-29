@@ -5,18 +5,18 @@
   "author": "seeded from exocortex-bok@707",
   "homepage": "https://github.com/cless75/personal-cognitive-os",
   "skills": [
-    ".claude/skills/review-concepts",
-    ".claude/skills/capture-hypothesis",
     ".claude/skills/archive-item",
-    ".claude/skills/init-me",
-    ".claude/skills/new-project",
-    ".claude/skills/start-session",
+    ".claude/skills/capture-hypothesis",
     ".claude/skills/close-session",
+    ".claude/skills/init-me",
     ".claude/skills/list-concepts",
+    ".claude/skills/new-project",
+    ".claude/skills/review-concepts",
+    ".claude/skills/start-session",
     ".claude/skills/status",
-    ".claude/skills/update-exocortex",
     ".claude/skills/sync-agents",
-    ".claude/skills/teach-me"
+    ".claude/skills/teach-me",
+    ".claude/skills/update-exocortex"
   ],
   "commands": ".claude/commands"
 }

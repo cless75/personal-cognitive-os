@@ -12,22 +12,21 @@
 
 Собери ZIP из папок навыков и загрузи: **Settings → Capabilities → Skills → Upload**.
 
+**Состав ZIP берётся из `.claude-plugin/plugin.json`, а не перечисляется руками** — иначе архив
+отстаёт от реального набора навыков (так и случилось: `status`, `archive-item` в него не попадали).
+Сначала `/sync-agents` (он перегенерирует `plugin.json`), потом сборка.
+
 Сборка (PowerShell, из корня репо):
 
 ```powershell
-Compress-Archive -Path .\.claude\skills\capture-hypothesis, `
-  .\.claude\skills\review-concepts, `
-  .\.claude\skills\init-me, .\.claude\skills\new-project, `
-  .\.claude\skills\start-session, .\.claude\skills\close-session, `
-  .\.claude\skills\list-concepts, .\.claude\skills\teach-me `
-  -DestinationPath .\distributions\personal-cognitive-os-skills.zip -Force
+$skills = (Get-Content .claude-plugin/plugin.json -Raw | ConvertFrom-Json).skills
+Compress-Archive -Path $skills -DestinationPath .\distributions\personal-cognitive-os-skills.zip -Force
 ```
 
-Сборка (bash):
+Сборка (bash, нужен `jq`):
 
 ```bash
-cd .claude/skills && zip -r ../../distributions/personal-cognitive-os-skills.zip \
-  capture-hypothesis review-concepts init-me new-project start-session close-session list-concepts teach-me update-exocortex sync-agents && cd ../..
+zip -r distributions/personal-cognitive-os-skills.zip $(jq -r '.skills[]' .claude-plugin/plugin.json)
 ```
 
 ## Способ 3 — глобальная команда инициации `/init-exocortex`

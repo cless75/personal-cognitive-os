@@ -1,4 +1,5 @@
 ---
+x_generated: "sync-agents — правь канон в tools/skills/"
 name: teach-me
 description: >
   Режим «Обучи меня»: интерактивное обучение ключевым концепциям экзокортекса

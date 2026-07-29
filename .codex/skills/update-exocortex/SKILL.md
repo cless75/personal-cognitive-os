@@ -24,8 +24,23 @@ version: 2
 | проекции: `.claude/*`, `.claude-plugin/*`, `.codex/*`, `AGENTS.md` (перегенерируются `/sync-agents`) | `About-Me/*` (профиль) |
 | `concepts/_template-concept.md`, `discovery/_template-hypothesis.md`, `projects/_template-project.md`, `areas/_template-area.md` | `discovery/*.md` (кроме шаблона), `projects/<slug>/*`, `areas/*` (кроме шаблона) |
 | `README.md`, `START-HERE.md`, `DEPLOY.md`, `onboarding/*`, `distributions/*`, `*/README.md`, `LICENSE`, `.gitignore` | `operation/sessions/*`, `operation/daily/*` |
-| `.exocortex/manifest.yaml` — только schema-поля; значения владельца (owner, agents, tier, init_state) сохраняются | `sources/*` содержимое каналов |
+| `.exocortex/manifest.yaml` — только schema-поля; значения владельца (owner, agents, tier, init_state) сохраняются | `sources/*` содержимое каналов (кроме `sources/*/README.md` — правила канала) |
 | — | блок `<!-- projects-map -->` в `CLAUDE.md` |
+| — | навыки с `frozen_from_tier:` — **замороженные** (DM-EXO-13 §4): не обновляются и не удаляются |
+
+## Замороженные навыки (DM-EXO-13 §4)
+
+Навык со ступени выше текущей, который уже стоял в инстансе, не удаляется при понижении `tier` —
+он **заморожен**: работает той версией, что есть, но обновления не приходит. Маркер ставит
+`/sync-agents`, здесь — только сверка отставания.
+
+На каждом прогоне для навыков с `frozen_from_tier:`:
+
+1. Сравни `frozen_seed_version` с текущей версией seed (`version` в `.claude-plugin/plugin.json`).
+2. Назови **фактический разрыв**, а не срок: «`link-bok` заморожен на 0.4.0, текущая версия seed 0.7.0».
+   Совпадают — сообщать не о чем.
+3. Не трогай сам файл: обновление замороженного навыка возможно только через возврат ступени
+   (`/sync-agents` разморозит и покажет расхождение, если навык правили руками).
 
 ## Шаг 0 — Диагностика установки и раскладки
 

@@ -21,7 +21,8 @@ tier: base
    ```
    (PowerShell: `$env:EXO_PLAIN=1; node .claude/hooks/statusline.cjs`.) Скрипт read-only, zero-dep, читает `.exocortex/manifest.yaml`, `concepts/`, `discovery/`, `operation/`, `sources/`, `boks/`. `EXO_PLAIN=1` убирает ANSI-коды, чтобы вывод читался в чате.
 2. **Если node недоступен** — собери те же цифры вручную (read-only): вариант/tier/режим из `.exocortex/manifest.yaml`; Concepts total/canon/AVP из `concepts/*.md` (`CANONICAL: true` / `status: pending-author-validation`); Discovery — файлы в `discovery/*.md` кроме шаблона и README; Sources — сумма файлов по каналам `sources/{inbox,mail,calendar,team-sessions,ai-sessions}/`; Last — последний по имени `operation/daily/YYYY-MM-DD*.md`; Projects — строки блока `projects-map` в `CLAUDE.md`; Pro — подписки из `boks/`, governance по `visibility` концептов.
-3. **Покажи вывод** дословно (моноширинно). Ничего не пиши в файлы — навык read-only.
+3. **Замороженные навыки (DM-EXO-13 §4).** Проверь `tools/skills/*/SKILL.md` на поле `frozen_from_tier:`. Если такие есть — добавь строку: `❄ Заморожено: N навыков ступени <tier> с <самая ранняя frozen_at> — обновления не приходят`. Перечисли имена, если их не больше пяти. Нет замороженных — строку не печатай вовсе.
+4. **Покажи вывод** дословно (моноширинно). Ничего не пиши в файлы — навык read-only.
 
 ## Выход
-Строки статуса экзокортекса в чате (Шапка · Концепты · [Pro: Подписки · Governance] · cwd).
+Строки статуса экзокортекса в чате (Шапка · Концепты · [❄ Заморожено] · [Pro: Подписки · Governance] · cwd).

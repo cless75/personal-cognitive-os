@@ -8,6 +8,7 @@ description: >
   Use when «инициализируй экзокортекс», «разверни репозиторий», «добавь экзокортекс
   в этот проект», /init-exocortex.
 kind: pipeline
+tier: base
 version: 2
 distribution: user-level   # ~/.claude/skills (Cowork: Upload ZIP), не репо-локально
 ---

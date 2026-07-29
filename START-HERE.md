@@ -16,6 +16,7 @@
 - [About-Me/about-me.md](About-Me/about-me.md) — твой профиль (знания о тебе).
 - [concepts/README.md](concepts/README.md) — что такое карточка концепта, статусы draft → canon.
 - [discovery/README.md](discovery/README.md) — гипотезы и исследовательские вопросы до авторского ревью.
+- [archive/README.md](archive/README.md) — правило среза: как убирать завершённое, не теряя историю.
 - [onboarding/01-first-review.md](onboarding/01-first-review.md) — первый ревью, шаг за шагом.
 - [onboarding/02-existing-project.md](onboarding/02-existing-project.md) — добавить экзокортекс в уже существующий проект Cowork (in-place).
 - [onboarding/surfaces.md](onboarding/surfaces.md) — работать в Obsidian или в Cowork.
@@ -31,6 +32,7 @@
 | `/init-me` | Заполнить профиль `About-Me/about-me.md` |
 | `/capture-hypothesis` | Зафиксировать гипотезу или исследовательский вопрос в `discovery/` без канонизации |
 | `/review-concepts` | ★ Материал (документ/транскрипт) → авторское ревью → карточка концепта |
+| `/archive-item` | Убрать завершённое в `archive/`: путь, дата и причина сохраняются |
 | `/list-concepts` | Обзор твоего репозитория концептов |
 | `/teach-me` | Интерактивное обучение концепциям экзокортекса (тур / концепт / разбор затруднения) |
 | `/new-project` | Создать проект (+ запись в карту проектов) |

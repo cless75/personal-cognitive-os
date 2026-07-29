@@ -6,6 +6,7 @@ description: >
   Аналог CLI-statusline для сред без хука (Cowork-GUI, Codex). Use when «статус»,
   «покажи состояние экзокортекса», «где я», /status.
 kind: simple
+tier: base
 ---
 
 # Навык: status — состояние экзокортекса в чат

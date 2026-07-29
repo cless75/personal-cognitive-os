@@ -11,7 +11,7 @@
 
 ## Карта зон (кратко)
 
-`concepts/` знание · `discovery/` гипотезы и исследовательские вопросы · `About-Me/` профиль · `operation/` sessions+daily · `sources/` вход (inbox/mail/calendar/team-sessions/ai-sessions) · `projects/` дела · `areas/` направления · `tools/` мастерская (канон навыков в `tools/skills/`) · `.exocortex/` системная зона.
+`concepts/` знание · `discovery/` гипотезы и исследовательские вопросы · `About-Me/` профиль · `operation/` sessions+daily · `sources/` вход (inbox/mail/calendar/team-sessions/ai-sessions) · `projects/` дела · `areas/` направления · `archive/` завершённое (сквозной срез) · `tools/` мастерская (канон навыков в `tools/skills/`) · `.exocortex/` системная зона.
 
 ## Принципы (минимум)
 
@@ -24,7 +24,7 @@
 
 ## Навыки
 
-Ядро: `/capture-hypothesis` (гипотеза → `discovery/` без канонизации), `/review-concepts` (материал → авторское ревью → концепт), `/init-me`, `/new-project`, `/start-session`, `/close-session`, `/list-concepts`, `/teach-me`, `/sync-agents`, `/update-exocortex`. Проектные навыки ведут диалог через выбор вариантов (AskUserQuestion), не свободным текстом.
+Ядро: `/capture-hypothesis` (гипотеза → `discovery/` без канонизации), `/review-concepts` (материал → авторское ревью → концепт), `/archive-item` (завершённое → `archive/` с сохранением пути), `/init-me`, `/new-project`, `/start-session`, `/close-session`, `/list-concepts`, `/teach-me`, `/sync-agents`, `/update-exocortex`. Проектные навыки ведут диалог через выбор вариантов (AskUserQuestion), не свободным текстом.
 
 ## Карта проектов
 

@@ -15,8 +15,8 @@
 
 ## Карта зон
 
-`concepts/` знание · `discovery/` гипотезы и исследовательские вопросы · `About-Me/` профиль · `operation/` sessions+daily · `sources/` вход (5 каналов-дропзон) · `projects/` дела · `areas/` направления · `tools/` мастерская · `.exocortex/` системная зона (manifest, model, agents, projections).
+`concepts/` знание · `discovery/` гипотезы и исследовательские вопросы · `About-Me/` профиль · `operation/` sessions+daily · `sources/` вход (5 каналов-дропзон) · `projects/` дела · `areas/` направления · `archive/` завершённое (сквозной срез) · `tools/` мастерская · `.exocortex/` системная зона (manifest, model, agents, projections).
 
 ## Ключевые навыки
 
-`capture-hypothesis` (гипотеза → `discovery/` без канонизации) · `review-concepts` (материал → авторское ревью → карточка концепта) · `init-me` (профиль) · `new-project` / `start-session` / `close-session` (проекты и сессии) · `list-concepts` · `sync-agents` (перегенерация проекций) · `update-exocortex` (обновление каркаса из seed + миграция раскладки).
+`capture-hypothesis` (гипотеза → `discovery/` без канонизации) · `review-concepts` (материал → авторское ревью → карточка концепта) · `archive-item` (завершённое → `archive/`, путь и причина сохраняются) · `init-me` (профиль) · `new-project` / `start-session` / `close-session` (проекты и сессии) · `list-concepts` · `sync-agents` (перегенерация проекций) · `update-exocortex` (обновление каркаса из seed + миграция раскладки).

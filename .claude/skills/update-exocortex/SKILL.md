@@ -8,6 +8,7 @@ description: >
   Use when «обнови экзокортекс», «подтяни последнюю версию», «мигрируй раскладку»,
   «реорганизуй каталог под новую модель», /update-exocortex.
 kind: pipeline
+tier: base
 version: 2
 ---
 

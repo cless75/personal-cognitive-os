@@ -8,6 +8,7 @@ description: >
   Use when «обучи меня», «объясни концепт экзокортекса», «проведи тур»,
   «не понимаю X», «как это устроено», /teach-me.
 kind: dialogue
+tier: base
 mode: nastavnik
 ---
 

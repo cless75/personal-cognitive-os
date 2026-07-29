@@ -8,6 +8,7 @@ description: >
   агентов», «добавь агента», «перегенерируй проекции», /sync-agents, после изменения
   канона навыков в tools/skills/.
 kind: pipeline
+tier: base
 ---
 
 # Навык: sync-agents — проекции канона для агентов

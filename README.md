@@ -38,7 +38,7 @@ Claude уже установлен. Два входа:
 
 ## Команды
 
-См. полный список в [START-HERE.md](START-HERE.md#команды). Ядро: `/capture-hypothesis`, `/review-concepts`, `/init-me`, `/new-project`, `/start-session`, `/close-session`, `/list-concepts`, `/teach-me`.
+См. полный список в [START-HERE.md](START-HERE.md#команды). Ядро: `/capture-hypothesis`, `/review-concepts`, `/init-me`, `/new-project`, `/start-session`, `/checkpoint-session`, `/close-session`, `/list-concepts`, `/teach-me`.
 
 ---
 

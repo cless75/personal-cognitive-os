@@ -13,7 +13,7 @@ created: "{{date}}"
 
 ## Сессии
 
-> Ведутся навыками `start-session` / `close-session`.
+> Ведутся навыком `session` (`/start-session` · `/checkpoint-session` · `/close-session`).
 
 <!-- sessions:start -->
 <!-- sessions:end -->

@@ -127,7 +127,7 @@ Claude извлечёт идеи, покажет черновик **твоими
 
 **3. Веди проекты** (карта проектов сама пополняется в `CLAUDE.md`):
 ```
-/new-project  →  /start-session  →  /close-session
+/new-project  →  /start-session  →  /checkpoint-session  →  /close-session
 ```
 
 ### Проверь, что заработало
@@ -151,6 +151,6 @@ Claude извлечёт идеи, покажет черновик **твоими
 
 ---
 
-**Все команды:** `/init-me` · `/review-concepts` · `/new-project` · `/start-session` · `/close-session` · `/list-concepts` · `/teach-me` · `/init-exocortex` · `/update-exocortex`
+**Все команды:** `/init-me` · `/review-concepts` · `/new-project` · `/start-session` · `/checkpoint-session` · `/close-session` · `/list-concepts` · `/teach-me` · `/init-exocortex` · `/update-exocortex`
 
 Подробнее — [START-HERE.md](START-HERE.md), [onboarding/](onboarding/).

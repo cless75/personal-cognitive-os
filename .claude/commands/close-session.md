@@ -2,4 +2,4 @@
 description: Закрыть сессию: итог + следующий шаг
 ---
 
-Запусти навык `close-session` (см. `.claude/skills/close-session/SKILL.md`) и следуй его протоколу. Аргументы пользователя: $ARGUMENTS
+Запусти навык `session`, фаза **CLOSE** (см. `.claude/skills/session/SKILL.md` → `close.md`) и следуй её протоколу. Аргументы пользователя: $ARGUMENTS

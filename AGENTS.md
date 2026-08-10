@@ -19,4 +19,4 @@
 
 ## Ключевые навыки
 
-`capture-hypothesis` (гипотеза → `discovery/` без канонизации) · `review-concepts` (материал → авторское ревью → карточка концепта) · `archive-item` (завершённое → `archive/`, путь и причина сохраняются) · `init-me` (профиль) · `new-project` / `start-session` / `close-session` (проекты и сессии) · `list-concepts` · `sync-agents` (перегенерация проекций) · `update-exocortex` (обновление каркаса из seed + миграция раскладки).
+`capture-hypothesis` (гипотеза → `discovery/` без канонизации) · `review-concepts` (материал → авторское ревью → карточка концепта) · `archive-item` (завершённое → `archive/`, путь и причина сохраняются) · `init-me` (профиль) · `new-project` / `session` (проекты и сессии: `/start-session` · `/checkpoint-session` · `/close-session`) · `list-concepts` · `sync-agents` (перегенерация проекций) · `update-exocortex` (обновление каркаса из seed + миграция раскладки).

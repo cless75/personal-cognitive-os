@@ -33,4 +33,4 @@
 ## Дальше
 
 - `/list-concepts` — обзор того, что накопил.
-- `/new-project`, `/start-session`, `/close-session` — веди работу по проектам (карта проектов сама пополняется в `CLAUDE.md`).
+- `/new-project`, `/start-session`, `/checkpoint-session`, `/close-session` — веди работу по проектам (карта проектов сама пополняется в `CLAUDE.md`).

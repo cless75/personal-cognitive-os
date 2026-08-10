@@ -35,7 +35,7 @@
                                                                             ▼
                                                               /list-concepts — обзор базы
 
-  Ведение работы:  /new-project → /start-session → /close-session
+  Ведение работы:  /new-project → /start-session → /checkpoint-session → /close-session
                    (карта проектов живёт в CLAUDE.md, ведётся навыками)
 ```
 
@@ -59,7 +59,7 @@
 
 ### 3. Ведение проекта и сессий
 - **Ситуация:** работа по концептам идёт не разово, а как проект во времени.
-- **Команды/режим:** `/new-project` (заводит папку в `projects/` + строку в карту проектов `CLAUDE.md`) → `/start-session` (цель сессии, отметка в карточке проекта и в `operation/daily/`) → `/close-session` (итог + следующий шаг).
+- **Команды/режим:** `/new-project` (заводит папку в `projects/` + строку в карту проектов `CLAUDE.md`) → `/start-session` (цель сессии, отметка в карточке проекта и в `operation/daily/`) → `/checkpoint-session` (сверка с целью и вердикт курса по ходу) → `/close-session` (итог + следующий шаг).
 - **Что происходит:** карта проектов в `CLAUDE.md` ведётся навыками автоматически (статус, последняя сессия, следующий шаг). Журнал дней копится в `operation/daily/`, сессии-атомы — в `operation/sessions/`.
 - **Результат:** контекст работы не теряется между сессиями; всегда видно, где ты остановился и что дальше.
 
@@ -75,7 +75,7 @@
 
 1. **Разверни репозиторий.** В Claude Cowork — `/init-exocortex` (развернёт и персонализирует за тебя). Вручную — `git clone` → открой папку в Cowork или Obsidian → `/init-me` (заполнит профиль `About-Me/`). Детали — [DEPLOY.md](DEPLOY.md) и [onboarding/01-first-review.md](onboarding/01-first-review.md).
 2. **Первая карточка.** Положи свой материал в `sources/inbox/` → `/review-concepts` → пройди авторское ревью → карточка появится в `concepts/`.
-3. **Заведи работу.** `/new-project`, затем `/start-session` / `/close-session` для ведения по проектам. Обзор базы — `/list-concepts`.
+3. **Заведи работу.** `/new-project`, затем `/start-session` → `/checkpoint-session` → `/close-session` для ведения по проектам. Обзор базы — `/list-concepts`.
 
 ---
 

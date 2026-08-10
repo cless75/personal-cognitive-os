@@ -7,12 +7,11 @@
   "skills": [
     ".claude/skills/archive-item",
     ".claude/skills/capture-hypothesis",
-    ".claude/skills/close-session",
     ".claude/skills/init-me",
     ".claude/skills/list-concepts",
     ".claude/skills/new-project",
     ".claude/skills/review-concepts",
-    ".claude/skills/start-session",
+    ".claude/skills/session",
     ".claude/skills/status",
     ".claude/skills/sync-agents",
     ".claude/skills/teach-me",

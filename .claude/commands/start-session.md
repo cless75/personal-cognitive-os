@@ -2,4 +2,4 @@
 description: Начать сессию по проекту
 ---
 
-Запусти навык `start-session` (см. `.claude/skills/start-session/SKILL.md`) и следуй его протоколу. Аргументы пользователя: $ARGUMENTS
+Запусти навык `session`, фаза **START** (см. `.claude/skills/session/SKILL.md` → `start.md`) и следуй её протоколу. Аргументы пользователя: $ARGUMENTS

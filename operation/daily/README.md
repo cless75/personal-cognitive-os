@@ -1,6 +1,6 @@
 # daily/ — журнал сессий
 
-Здесь навыки `start-session` / `close-session` ведут лёгкий журнал работы по проектам. Один файл на день: `YYYY-MM-DD.md`.
+Здесь навык `session` (`/start-session` · `/checkpoint-session` · `/close-session`) ведёт лёгкий журнал работы по проектам. Один файл на день: `YYYY-MM-DD.md`.
 
 Формат записи (чистый Markdown, без плагинов):
 

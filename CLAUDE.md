@@ -24,11 +24,11 @@
 
 ## Навыки
 
-Ядро: `/capture-hypothesis` (гипотеза → `discovery/` без канонизации), `/review-concepts` (материал → авторское ревью → концепт), `/archive-item` (завершённое → `archive/` с сохранением пути), `/init-me`, `/new-project`, `/start-session`, `/close-session`, `/list-concepts`, `/teach-me`, `/sync-agents`, `/update-exocortex`. Проектные навыки ведут диалог через выбор вариантов (AskUserQuestion), не свободным текстом.
+Ядро: `/capture-hypothesis` (гипотеза → `discovery/` без канонизации), `/review-concepts` (материал → авторское ревью → концепт), `/archive-item` (завершённое → `archive/` с сохранением пути), `/init-me`, `/new-project`, `/start-session`, `/checkpoint-session`, `/close-session`, `/list-concepts`, `/teach-me`, `/sync-agents`, `/update-exocortex`. Проектные навыки ведут диалог через выбор вариантов (AskUserQuestion), не свободным текстом.
 
 ## Карта проектов
 
-> Ведётся навыками `new-project` / `start-session` / `close-session`. Правится только блок между маркерами ниже — не редактируй вручную.
+> Ведётся навыками `new-project` / `session` (фазы старт · чекпоинт · итог). Правится только блок между маркерами ниже — не редактируй вручную.
 
 <!-- projects-map:start -->
 

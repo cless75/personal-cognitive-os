@@ -1,70 +1,79 @@
 ---
 x_generated: "sync-agents — правь канон в tools/skills/"
 name: init-exocortex
-description: >
-  v2 — единый интерактивный поток инициации Personal Cognitive OS: выбор агентов →
-  развертывание (новый репозиторий / in-place в существующий проект / миграция старой
-  раскладки) → sync-agents → init-me → приглашение к первому концепту. Грейсфул-прерывание:
-  состояние в .exocortex/manifest.yaml (init_state). Глобальный навык уровня пользователя.
-  Use when «инициализируй экзокортекс», «разверни репозиторий», «добавь экзокортекс
-  в этот проект», /init-exocortex.
-kind: pipeline
-tier: base
-version: 2
-distribution: user-level   # ~/.claude/skills (Cowork: Upload ZIP), не репо-локально
+description: Инициализирует новый personal или team экзокортекс в отдельном каталоге, встраивает экзокортекс в существующий проект либо передаёт миграцию в update-exocortex. Использовать для «инициализируй экзокортекс», «создай семейный/team vault», «разверни репозиторий», «добавь экзокортекс в проект» и /init-exocortex.
 ---
 
-# Навык: инициация Personal Cognitive OS (единый поток v2)
+# Инициализация экзокортекса
 
-Доводит владельца от «ничего нет» до первого концепта без разрывов. Любой шаг можно прервать — прогресс в `.exocortex/manifest.yaml` (`init_state: seed → agents → scaffold → profile → first-concept → complete`); при повторном запуске продолжай с места остановки, ничего не перезаписывая.
+Вести поток недеструктивно. Сохранять прогресс в `.exocortex/manifest.yaml`; повторный запуск не должен перезаписывать пользовательские данные.
 
-## Шаг 0 — Режим (определи по контексту, подтверди выбором)
+## 1. Определить топологию и тип
 
-| Режим | Когда | Что делает |
-|---|---|---|
-| **A. Новый репозиторий** | пустая папка / «разверни мне» | clone/scaffold seed → раскладка 7 зон + `.exocortex/` |
-| **B. In-place** | существующий проект (Cowork/рабочий репо) с содержимым | недеструктивно добавляет недостающие зоны, дописывает карту проектов |
-| **C. Миграция** | обнаружена старая раскладка (корневые `daily/` или `manifest.yaml`, сырьё прямо в `sources/`, навыки только в `.claude/skills`) | передай в `/update-exocortex` сценарий C |
+Сначала выбрать топологию:
 
-## Шаг 1 — Агенты
+- `A` — новый независимый vault;
+- `B` — in-place в существующий проект, только добавление отсутствующего;
+- `C` — миграция старой раскладки через `update-exocortex`.
 
-Спроси (multi-select): Claude Code / Claude Cowork / Cursor / Codex / другой. Запиши `agents:` в `.exocortex/manifest.yaml` (после scaffold). → `init_state: agents`.
+Затем выбрать тип: `personal` или `team`.
 
-## Шаг 2 — Развертывание
+Если CWD содержит `.exo-workspace.yaml`, но не содержит собственного `.exocortex/manifest.yaml`, считать его workspace-root. Никогда не создавать зоны vault в таком корне. Для топологии A требовать дочерний каталог; после создания запустить `exo workspace scan` или эквивалентно обновить реестр недеструктивно.
 
-**Режим A:**
-1. Параметры (AskUserQuestion): способ (clone публичного seed `github.com/cless75/personal-cognitive-os` / scaffold оффлайн) · каталог · имя.
-2. `git clone <seed>` или scaffold. Подставь `{{learner}}`/`{{learner_email}}`/`{{date}}` (в `.exocortex/manifest.yaml`, `About-Me/`). `git init` + первый commit (если новый).
+## 2. Собрать параметры
 
-**Режим B (НЕДЕСТРУКТИВНО — ничего не удаляем и не перезаписываем):**
-1. Скан проекта: что уже есть (`CLAUDE.md`, `concepts/`, `.claude/`, свой плагин); покажи и подтверди встраивание.
-2. Подтяни seed во временный каталог (`git clone --depth 1 … <tmp>`; без сети — встроенный шаблон).
-3. Встрой seed-managed: канон навыков `tools/skills/*`, системную зону `.exocortex/*`, шаблоны и README зон (`concepts/_template-concept.md`, `discovery/_template-hypothesis.md`, `projects/_template-project.md`, `areas/_template-area.md`, `*/README.md`), `onboarding/*`, `distributions/*`, `DEPLOY.md`, `START-HERE.md` — копируй ТОЛЬКО отсутствующее.
-4. Создай пустые user-зоны, если их нет: `concepts/`, `discovery/`, `About-Me/about-me.md` (из шаблона), `sources/{inbox,mail,calendar,team-sessions,ai-sessions}/`, `operation/{sessions,daily}/`, `projects/`, `areas/`.
-5. `CLAUDE.md` — слияние, не перезапись: допиши секцию «## Personal Cognitive OS» + блок `<!-- projects-map:start -->…<!-- projects-map:end -->`; маркеры уже есть — не дублируй. Удали `<tmp>`.
+Для `personal` запросить имя vault, владельца, приватность, агентов и remote.
 
-→ `init_state: scaffold`.
+Для `team` запросить:
 
-## Шаг 3 — Проекции
+- имя vault и участников с устойчивыми идентификаторами;
+- режим владения и правило структурных изменений;
+- приватность, inbound sharing и default visibility;
+- агентов и remote.
 
-Запусти `/sync-agents`: сгенерирует `.claude/skills|commands`, `.claude-plugin/plugin.json`, `AGENTS.md`, тонкий `CLAUDE.md` (в режиме B — только дописанный блок) для всех агентов из манифеста.
-- **Claude Code:** `.claude/skills` подхватываются автоматически.
-- **Cowork:** напомни установить плагин/ZIP (`onboarding/surfaces.md`, `distributions/README.md`).
+Задавать по одному вопросу. Не запрашивать личные профили, почту или секреты для Team-vault.
 
-## Шаг 4 — Персонализация
+## 3. Развернуть
 
-Запусти логику `init-me` (интервью или из файла-резюме) → `About-Me/about-me.md`; существующий профиль — дополни, не затирая. Напомни про приватность (`/About-Me/` в `.gitignore` публичного форка). → `init_state: profile`.
+Для топологии A использовать `scripts/scaffold_exocortex.py`. Передать точный commit SHA seed через `--seed-sha`; не использовать плавающий ref. Скрипт создаёт новую историю и фиксированный минимальный снимок без `.git`, `_overlay`, build-инфраструктуры и seed-history.
 
-## Шаг 5 — Такт 1 «Первый концепт»
+Пример Team-init:
 
-Предложи зафиксировать сырое допущение через `/capture-hypothesis` или положить документ/транскрипт в `sources/inbox/` и запустить `/review-concepts` — ценность в первый час: «из моего материала — моё знание». После первой карточки → `init_state: complete`; покажи чек-лист первых шагов (`START-HERE.md`) и предложи `/teach-me` для тура по концепциям.
+```powershell
+python scripts/scaffold_exocortex.py --workspace-root D:\work --target D:\work\family-cognitive-os --type team --name family-cognitive-os --member team/dmitry --member team/angelina --agent claude-code --agent codex --seed-sha <40-char-sha>
+```
 
-## Правила
+Для topology B копировать только отсутствующие seed-managed файлы и зоны. Не заменять существующие `AGENTS.md`, профили, проекты, источники или настройки. Для C запустить `update-exocortex`.
 
-- **Автономность:** весь поток работает офлайн, без Платформы (чистый MD + git).
-- **Недеструктивность:** существующие файлы не перезаписываются; user-owned зоны не трогаются.
-- Один вопрос за раз; выборы — через варианты (AskUserQuestion), не свободным текстом.
+## 4. Инициализировать субъект
 
-## Выход
+Для `personal` запустить `init-me` и сохранить профиль в `About-Me/`.
 
-Развёрнутый (или дополненный) экзокортекс: зоны ядра + `discovery/` + `.exocortex/`, проекции выбранных агентов, заполненный профиль, владелец знает следующий шаг.
+Для `team` не запускать `init-me`. Создать общий профиль субъекта, реестр участников, governance, шаблон work unit с ровно одним `A`, стартовый проект и handoff. Личные материалы допускаются только после явной публикации; внутри Team-vault всё имеет общую видимость.
+
+## 5. Создать проекции и проверить
+
+Запустить `sync-agents`:
+
+- Claude Code: `.claude/skills` и команды;
+- Codex: `.agents/skills`; `.codex/config.toml` только для project config/MCP;
+- `AGENTS.md` — тонкий вход.
+
+User-level копию этого навыка устанавливать `scripts/install_user_skill.ps1`; канон остаётся в seed, повторная установка заменяет только управляемую копию `$HOME/.agents/skills/init-exocortex`.
+
+После scaffold:
+
+1. зарегистрировать vault в workspace;
+2. запустить `scripts/smoke_test.py <vault>`;
+3. повторить scaffold с теми же параметрами и убедиться, что данные и git diff не изменились;
+4. выполнить privacy scan;
+5. предложить сделать vault активным, не переключать без подтверждения.
+
+## Инварианты
+
+- Не создавать vault в workspace-root.
+- Не наследовать историю seed.
+- Не перезаписывать существующие файлы и семейные данные.
+- Не переносить personal profile, credentials, абсолютные локальные пути и секреты.
+- В Team work unit должен быть ровно один `A`; структурные изменения требуют review второго владельца.
+
